@@ -242,33 +242,30 @@
             display: block;
         }
         
-        /* 💡古い「::before」の指定を削除し、サムネイル中央にYouTube風ロゴを浮かび上がらせる指定に変更 */
+        /* サムネイル中央に本物のYouTubeロゴマークを配置 */
         .match-video-space a::after {
             content: "";
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%); /* 💡完全に中央に配置 */
+            transform: translate(-50%, -50%); /* 完全に中央に配置 */
             
-            /* YouTubeの赤丸四角を再現 */
-            width: 20px;
-            height: 14px;
-            background-color: #ff0000; /* YouTubeのブランドレッド */
-            border-radius: 4px;
+            /* 公式のYouTubeアイコンの画像(SVG)を直接背景として読み込みます */
+            width: 24px;
+            height: 18px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="%23ff0000"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.537V174.38L394.17 255.81l-162.025 81.81z"/></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
             
-            /* 中央の白い再生三角（▶）をCSSのボーダーで描画 */
-            border-style: solid;
-            border-width: 4px 0 4px 7px;
-            border-color: transparent transparent transparent #ffffff;
-            
-            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+            filter: drop-shadow(0px 1px 3px rgba(0,0,0,0.4));
             pointer-events: none; /* タップの邪魔をしない設定 */
             opacity: 0.9;
+            transition: opacity 0.2s;
         }
         
-        /* タップ（ホバー）したときに少し明るくする演出（お好みで） */
+        /* タップ（ホバー）したときに見やすくする演出 */
         .match-video-space a:active::after {
-            background-color: #cc0000;
             opacity: 1;
         }
         
