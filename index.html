@@ -1,1175 +1,1180 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>FIFA World Cup 2026</title>
-    <style>
-        /* ==========================================================================
-           FIFA 2026 Vivid & Pop Palette (Ref: image_be972b.png)
-           ========================================================================== */
-        
-        :root {
-            --bg-color: #f8f9fa;         
-            --card-bg: #ffffff;          
-            --primary-navy: #0b0d16;     
-            --border-color: #e9ecef;     
-        
-            /* ポップアクセント */
-            --accent-lime: #b9eb0b;      
-            --accent-emerald: #08ca5d;   
-            --accent-red: #eb2504;       
-            --accent-blue: #3757fb;      
-            --trophy-gold: #f3a712;      
+    <!DOCTYPE html>
+    <html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+        <title>FIFA World Cup 2026</title>
+        <style>
+            /* ==========================================================================
+               FIFA 2026 Vivid & Pop Palette (Ref: image_be972b.png)
+               ========================================================================== */
             
-            --text-main: #212529;        
-            --text-sub: #6c757d;         
-            --video-bg: #f1f3f5;         
-        }
-        
-        /* ==========================================================================
-           Reset & Base Layout
-           ========================================================================== */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            -webkit-tap-highlight-color: transparent;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            overflow: hidden;
-            position: fixed;
-            width: 100%;
-            height: 100%;
-        }
-        
-        /* ==========================================================================
-           Header (高さをややタイトに)
-           ========================================================================== */
-        header {
-            background-color: var(--primary-navy);
-            padding: 10px;
-            padding-top: calc(10px + env(safe-area-inset-top));
-            text-align: center;
-            z-index: 10;
-            position: relative;
-            border-bottom: 3px solid var(--accent-red);
-        }
-        
-        header h1 {
-            font-size: 1.05rem;
-            font-weight: 900;
-            color: #ffffff;
-            letter-spacing: 0.08em;
-        }
-        
-        header h1 span {
-            color: var(--accent-lime);
-        }
-        
-        /* ==========================================================================
-           Slider Layout
-           ========================================================================== */
-        .slider-container {
-            display: flex;
-            width: 100%;
-            /* 計算を微調整してコンテンツエリアを最大化 */
-            height: calc(100vh - 72px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            scroll-behavior: smooth;
-        }
-        
-        .slider-container::-webkit-scrollbar {
-            display: none;
-        }
-        
-        /* ==========================================================================
-           Stage Page & Section Box (★1画面収め用の圧縮設計)
-           ========================================================================== */
-        .stage-page {
-            flex: 0 0 100%;
-            width: 100%;
-            height: 100%;
-            scroll-snap-align: start;
-            overflow-y: auto;
-            scroll-snap-type: y mandatory; 
-            scroll-behavior: smooth;
-            padding: 10px 10px 100px 10px; /* 余白をタイトに */
-        }
-        
-        .section-box {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            padding: 8px 10px 10px 10px; /* 内側の余白を圧縮 */
-            margin-bottom: 24px;
+            :root {
+                --bg-color: #f8f9fa;         
+                --card-bg: #ffffff;          
+                --primary-navy: #0b0d16;     
+                --border-color: #e9ecef;     
             
-            scroll-snap-align: start; 
-            scroll-margin-top: 10px; 
+                /* ポップアクセント */
+                --accent-lime: #b9eb0b;      
+                --accent-emerald: #08ca5d;   
+                --accent-red: #eb2504;       
+                --accent-blue: #3757fb;      
+                --trophy-gold: #f3a712;      
+                
+                --text-main: #212529;        
+                --text-sub: #6c757d;         
+                --video-bg: #f1f3f5;         
+            }
             
-            /* 画面下部で見切れないよう引き算を100pxに調整 */
-            height: calc(100vh - 190px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between; 
+            /* ==========================================================================
+               Reset & Base Layout
+               ========================================================================== */
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+                -webkit-tap-highlight-color: transparent;
+            }
             
-            border: 3px solid var(--primary-navy);
-            box-shadow: 4px 4px 0px var(--accent-lime);
-        }
-        
-        .section-box-title {
-            font-size: 1.5rem;
-            font-weight: 900;
-            color: var(--primary-navy);
-            padding-bottom: 2px;
-            margin-bottom: 4px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        /* ==========================================================================
-           極限圧縮 試合カード + YouTubeミニエリア
-           ========================================================================== */
-        .match-card {
-            border: 2px solid var(--border-color);
-            border-radius: 6px;
-            overflow: hidden;
-            background: var(--card-bg);
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-            max-height: 78px;
-            margin-bottom: 4px; /* カード間の隙間を詰め、縦を節約 */
-        }
-        .match-card:last-child {
-            margin-bottom: 0;
-        }
-        
-        /* メタバーの縦パディングを限界まで凝縮 */
-        .match-meta-bar {
-            background: var(--bg-color);
-            padding: 2px 6px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.65rem;
-            border-bottom: 1px solid var(--border-color);
-            line-height: 1.2;
-        }
-        
-        .match-num {
-            font-weight: 800;
-            color: var(--accent-blue);
-        }
-        
-        .match-time {
-            color: var(--text-sub);
-            font-weight: 600;
-        }
-        
-        /* 対戦エリアのパディングを極小に */
-        .match-body {
-            padding: 2px 6px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 6px;
-            flex: 1;
-        }
-        
-        .match-teams-space {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: 4px; /* チーム間の隙間を限界まで詰める */
-        }
-        
-        .team-row {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start; /* ★ 左寄せにします */
-            font-size: 1.1rem;
-            font-weight: 700;
-            line-height: 1.2;
-        }
-        
-        .team-identity {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            width: 170px;                /* ★ チーム名エリアの幅を固定して、スコアの位置を揃えます */
-            flex-shrink: 0;              /* ★ 画面が狭くなっても幅を維持します */
-        }
-        
-        .score-box {
-            font-size: 1.1rem;
-            font-weight: 800;
-            color: var(--accent-blue);
-        }
-        
-        /* ★YouTube動画スペースのベース（グレーの背景を削除） */
-        .match-video-space {
-            width: 112px;         
-            height: 63px;        
-            background-color: transparent; /* 💡薄グレーの背景を透明にします */
-            border-radius: 3px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-            position: relative;
-            flex-shrink: 0;     
-        }
-        
-        /* リンクと画像をカードいっぱいに広げる */
-        .match-video-space a {
-            display: block;
-            width: 100%;
-            height: 100%;
-            position: relative; /* 💡アイコンを中央に配置するための基準にします */
-        }
-        
-        .match-video-space img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border: none;
-            display: block;
-        }
-        
-        /* サムネイル中央に本物のYouTubeロゴマークを配置 */
-        .match-video-space a::after {
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%); /* 完全に中央に配置 */
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+                background-color: var(--bg-color);
+                color: var(--text-main);
+                overflow: hidden;
+                position: fixed;
+                width: 100%;
+                height: 100%;
+            }
             
-            /* 公式のYouTubeアイコンの画像(SVG)を直接背景として読み込みます */
-            width: 24px;
-            height: 18px;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="%23ff0000" d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305z"/><path fill="%23ffffff" d="M232.145 347.617V174.38L394.17 255.81l-162.025 91.807z"/></svg>');            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
+            /* ==========================================================================
+               Header (高さをややタイトに)
+               ========================================================================== */
+            header {
+                background-color: var(--primary-navy);
+                padding: 10px;
+                padding-top: calc(10px + env(safe-area-inset-top));
+                text-align: center;
+                z-index: 10;
+                position: relative;
+                border-bottom: 3px solid var(--accent-red);
+            }
             
-            filter: drop-shadow(0px 1px 3px rgba(0,0,0,0.4));
-            pointer-events: none; /* タップの邪魔をしない設定 */
-            opacity: 0.9;
-            transition: opacity 0.2s;
-        }
-        
-        /* タップ（ホバー）したときに見やすくする演出 */
-        .match-video-space a:active::after {
-            opacity: 1;
-        }
-        
-        /* ==========================================================================
-           Tab Navigation
-           ========================================================================== */
-        nav.tab-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: var(--primary-navy);
-            display: flex;
-            padding-bottom: env(safe-area-inset-bottom);
-            z-index: 100;
-        }
-        
-        .tab-item {
-            flex: 1;
-            padding: 12px 10px; /* タブも少しだけスマートに */
-            text-align: center;
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.75rem;
-            font-weight: 800;
-            text-decoration: none;
-            transition: background 0.2s, color 0.2s;
-        }
-        
-        .tab-item.active {
-            color: var(--accent-lime);
-            background-color: rgba(255, 255, 255, 0.05);
-            box-shadow: inset 0 -4px 0 var(--accent-lime);
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <h1>FIFA WORLD CUP <span>2026</span></h1>
-    </header>
-
-    <div class="slider-container" id="mainSlider">
-
-        <section class="stage-page" id="page-group">
-         
-            <div class="section-box">
-                <div class="section-box-title">Group A</div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇲🇽 メキシコ</div><div class="score-box">2</div></div>
-                            <div class="team-row"><div class="team-identity">🇿🇦 南アフリカ</div><div class="score-box">0</div></div>
-                        </div>
-                        <div class="match-video-space">
-                            <a href="https://www.youtube.com/watch?v=HxHaup6d_wM" target="_blank">
-                                <img src="https://img.youtube.com/vi/HxHaup6d_wM/mqdefault.jpg" alt="Highlight">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇰🇷 韓国</div><div class="score-box">2</div></div>
-                            <div class="team-row"><div class="team-identity">🇨🇿 チェコ</div><div class="score-box">1</div></div>
-                        </div>
-                        <div class="match-video-space">
-                            <a href="https://www.youtube.com/watch?v=NPLKCfPnmzE" target="_blank">
-                                <img src="https://img.youtube.com/vi/NPLKCfPnmzE/mqdefault.jpg" alt="Highlight">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇨🇿 チェコ</div><div class="score-box">1</div></div>
-                            <div class="team-row"><div class="team-identity">🇿🇦 南アフリカ</div><div class="score-box">1</div></div>
-                        </div>
-                        <div class="match-video-space">
-                            <a href="https://www.youtube.com/watch?v=qXveo5ydio4" target="_blank">
-                                <img src="https://img.youtube.com/vi/qXveo5ydio4/mqdefault.jpg" alt="Highlight">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="match-card">
-                     <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇲🇽 メキシコ</div><div class="score-box">1</div></div>
-                            <div class="team-row"><div class="team-identity">🇰🇷 韓国</div><div class="score-box">0</div></div>
-                        </div>
-                        <div class="match-video-space">
-                            <a href="https://www.youtube.com/watch?v=bcOLyzZMxMU" target="_blank">
-                                <img src="https://img.youtube.com/vi/bcOLyzZMxMU/mqdefault.jpg" alt="Highlight">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇨🇿 チェコ</div><div class="score-box">-</div></div>
-                            <div class="team-row"><div class="team-identity">🇲🇽 メキシコ</div><div class="score-box">-</div></div>
-                        </div>
-                        <div class="match-video-space"></div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇿🇦 南アフリカ</div><div class="score-box">-</div></div>
-                            <div class="team-row"><div class="team-identity">🇰🇷 韓国</div><div class="score-box">-</div></div>
-                        </div>
-                        <div class="match-video-space"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="section-box">
-                <div class="section-box-title">Group B</div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇨🇦 カナダ</div><div class="score-box">1</div></div>
-                            <div class="team-row"><div class="team-identity">🇧🇦 ボスニア・H</div><div class="score-box">1</div></div>
-                        </div>
-                        <div class="match-video-space">
-                            <a href="https://www.youtube.com/watch?v=URvgDf2be9c" target="_blank">
-                                <img src="https://img.youtube.com/vi/URvgDf2be9c/mqdefault.jpg" alt="Highlight">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇶🇦 カタール</div><div class="score-box">1</div></div>
-                            <div class="team-row"><div class="team-identity">🇨🇭 スイス</div><div class="score-box">1</div></div>
-                        </div>
-                        <div class="match-video-space">
-                            <a href="https://www.youtube.com/watch?v=IZQyjFfQqfc" target="_blank">
-                                <img src="https://img.youtube.com/vi/IZQyjFfQqfc/mqdefault.jpg" alt="Highlight">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇨🇭 スイス</div><div class="score-box">4</div></div>
-                            <div class="team-row"><div class="team-identity">🇧🇦 ボスニア・H</div><div class="score-box">1</div></div>
-                        </div>
-                        <div class="match-video-space">
-                            <a href="https://www.youtube.com/watch?v=fYSgjXZaQIA" target="_blank">
-                                <img src="https://img.youtube.com/vi/fYSgjXZaQIA/mqdefault.jpg" alt="Highlight">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇨🇦 カナダ</div><div class="score-box">6</div></div>
-                            <div class="team-row"><div class="team-identity">🇶🇦 カタール</div><div class="score-box">0</div></div>
-                        </div>
-                        <div class="match-video-space">
-                            <a href="https://www.youtube.com/watch?v=9rW5NO8ouGU" target="_blank">
-                                <img src="https://img.youtube.com/vi/9rW5NO8ouGU/mqdefault.jpg" alt="Highlight">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇨🇭 スイス</div><div class="score-box">-</div></div>
-                            <div class="team-row"><div class="team-identity">🇨🇦 カナダ</div><div class="score-box">-</div></div>
-                        </div>
-                        <div class="match-video-space"></div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇧🇦 ボスニア・H</div><div class="score-box">-</div></div>
-                            <div class="team-row"><div class="team-identity">🇶🇦 カタール</div><div class="score-box">-</div></div>
-                        </div>
-                        <div class="match-video-space"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="section-box">
-                <div class="section-box-title">Group C</div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇭🇹 ハイチ</div><div class="score-box">0</div></div>
-                            <div class="team-row"><div class="team-identity">🏴󠁧󠁢󠁳󠁣󠁴󠁿 スコットランド</div><div class="score-box">1</div></div>
-                        </div>
-                        <div class="match-video-space">
-                            <a href="https://www.youtube.com/watch?v=FnhbPSJXPNY" target="_blank">
-                                <img src="https://img.youtube.com/vi/FnhbPSJXPNY/mqdefault.jpg" alt="Highlight">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇧🇷 ブラジル</div><div class="score-box">1</div></div>
-                            <div class="team-row"><div class="team-identity">🇲🇦 モロッコ</div><div class="score-box">1</div></div>
-                        </div>
-                        <div class="match-video-space">
-                            <a href="https://www.youtube.com/watch?v=yhuXl2aHrLY" target="_blank">
-                                <img src="https://img.youtube.com/vi/yhuXl2aHrLY/mqdefault.jpg" alt="Highlight">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇧🇷 ブラジル</div><div class="score-box">3</div></div>
-                            <div class="team-row"><div class="team-identity">🇭🇹 ハイチ</div><div class="score-box">0</div></div>
-                        </div>
-                        <div class="match-video-space">
-                            <a href="https://www.youtube.com/watch?v=Wnf2zqWAC1c" target="_blank">
-                                <img src="https://img.youtube.com/vi/Wnf2zqWAC1c/mqdefault.jpg" alt="Highlight">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🏴󠁧󠁢󠁳󠁣󠁴󠁿 スコットランド</div><div class="score-box">0</div></div>
-                            <div class="team-row"><div class="team-identity">🇲🇦 モロッコ</div><div class="score-box">1</div></div>
-                        </div>
-                        <div class="match-video-space">
-                            <a href="https://www.youtube.com/watch?v=vTnr9zsUVyM" target="_blank">
-                                <img src="https://img.youtube.com/vi/vTnr9zsUVyM/mqdefault.jpg" alt="Highlight">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🏴󠁧󠁢󠁳󠁣󠁴󠁿 スコットランド</div><div class="score-box">-</div></div>
-                            <div class="team-row"><div class="team-identity">🇧🇷 ブラジル</div><div class="score-box">-</div></div>
-                        </div>
-                        <div class="match-video-space"></div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇲🇦 モロッコ</div><div class="score-box">-</div></div>
-                            <div class="team-row"><div class="team-identity">🇭🇹 ハイチ</div><div class="score-box">-</div></div>
-                        </div>
-                        <div class="match-video-space"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="section-box">
-                <div class="section-box-title">Group D</div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇺🇸 アメリカ</div><div class="score-box">4</div></div>
-                            <div class="team-row"><div class="team-identity">🇵🇾 パラグアイ</div><div class="score-box">1</div></div>
-                        </div>
-                        <div class="match-video-space">
-                            <a href="https://www.youtube.com/watch?v=DBp42UyYvQE" target="_blank">
-                                <img src="https://img.youtube.com/vi/DBp42UyYvQE/mqdefault.jpg" alt="Highlight">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇦🇺 オーストラリア</div><div class="score-box">2</div></div>
-                            <div class="team-row"><div class="team-identity">🇹🇷 トルコ</div><div class="score-box">0</div></div>
-                        </div>
-                        <div class="match-video-space">
-                            <a href="https://www.youtube.com/watch?v=n3G2hHWBHWM" target="_blank">
-                                <img src="https://img.youtube.com/vi/n3G2hHWBHWM/mqdefault.jpg" alt="Highlight">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇺🇸 アメリカ</div><div class="score-box">2</div></div>
-                            <div class="team-row"><div class="team-identity">🇦🇺 オーストラリア</div><div class="score-box">0</div></div>
-                        </div>
-                        <div class="match-video-space">
-                            <a href="https://www.youtube.com/watch?v=nNwdg0m6G6A" target="_blank">
-                                <img src="https://img.youtube.com/vi/nNwdg0m6G6A/mqdefault.jpg" alt="Highlight">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇹🇷 トルコ</div><div class="score-box">0</div></div>
-                            <div class="team-row"><div class="team-identity">🇵🇾 パラグアイ</div><div class="score-box">1</div></div>
-                        </div>
-                        <div class="match-video-space">
-                            <a href="https://www.youtube.com/watch?v=D9lZubMQlT4" target="_blank">
-                                <img src="https://img.youtube.com/vi/D9lZubMQlT4/mqdefault.jpg" alt="Highlight">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇹🇷 トルコ</div><div class="score-box">-</div></div>
-                            <div class="team-row"><div class="team-identity">🇺🇸 アメリカ</div><div class="score-box">-</div></div>
-                        </div>
-                        <div class="match-video-space"></div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇵🇾 パラグアイ</div><div class="score-box">-</div></div>
-                            <div class="team-row"><div class="team-identity">🇦🇺 オーストラリア</div><div class="score-box">-</div></div>
-                        </div>
-                        <div class="match-video-space"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="section-box">
-                <div class="section-box-title">Group E</div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇨🇮 コートジボワール</div><div class="score-box">1</div></div>
-                            <div class="team-row"><div class="team-identity">🇪🇨 エクアドル</div><div class="score-box">0</div></div>
-                        </div>
-                        <div class="match-video-space">
-                            <a href="https://www.youtube.com/watch?v=mov67UkdezM" target="_blank">
-                                <img src="https://img.youtube.com/vi/mov67UkdezM/mqdefault.jpg" alt="Highlight">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇩🇪 ドイツ</div><div class="score-box">7</div></div>
-                            <div class="team-row"><div class="team-identity">🇨🇼 キュラソー</div><div class="score-box">1</div></div>
-                        </div>
-                        <div class="match-video-space">
-                            <a href="https://www.youtube.com/watch?v=_hpIHERSBEs" target="_blank">
-                                <img src="https://img.youtube.com/vi/_hpIHERSBEs/mqdefault.jpg" alt="Highlight">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇩🇪 ドイツ</div><div class="score-box">-</div></div>
-                            <div class="team-row"><div class="team-identity">🇨🇮 コートジボワール</div><div class="score-box">-</div></div>
-                        </div>
-                        <div class="match-video-space"></div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇪🇨 エクアドル</div><div class="score-box">-</div></div>
-                            <div class="team-row"><div class="team-identity">🇨🇼 キュラソー</div><div class="score-box">-</div></div>
-                        </div>
-                        <div class="match-video-space"></div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇨🇼 キュラソー</div><div class="score-box">-</div></div>
-                            <div class="team-row"><div class="team-identity">🇨🇮 コートジボワール</div><div class="score-box">-</div></div>
-                        </div>
-                        <div class="match-video-space"></div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇪🇨 エクアドル</div><div class="score-box">-</div></div>
-                            <div class="team-row"><div class="team-identity">🇩🇪 ドイツ</div><div class="score-box">-</div></div>
-                        </div>
-                        <div class="match-video-space"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="section-box">
-                <div class="section-box-title">Group F</div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇳🇱 オランダ</div><div class="score-box">2</div></div>
-                            <div class="team-row"><div class="team-identity">🇯🇵 日本</div><div class="score-box">2</div></div>
-                        </div>
-                        <div class="match-video-space">
-                            <a href="https://www.youtube.com/watch?v=3jIMk43CECY" target="_blank">
-                                <img src="https://img.youtube.com/vi/3jIMk43CECY/mqdefault.jpg" alt="Highlight">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇸🇪 スウェーデン</div><div class="score-box">5</div></div>
-                            <div class="team-row"><div class="team-identity">🇹🇳 チュニジア</div><div class="score-box">1</div></div>
-                        </div>
-                        <div class="match-video-space">
-                            <a href="https://www.youtube.com/watch?v=l6bkoYyr-c4" target="_blank">
-                                <img src="https://img.youtube.com/vi/l6bkoYyr-c4/mqdefault.jpg" alt="Highlight">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇳🇱 オランダ</div><div class="score-box">-</div></div>
-                            <div class="team-row"><div class="team-identity">🇸🇪 スウェーデン</div><div class="score-box">-</div></div>
-                        </div>
-                        <div class="match-video-space"></div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇹🇳 チュニジア</div><div class="score-box">-</div></div>
-                            <div class="team-row"><div class="team-identity">🇯🇵 日本</div><div class="score-box">-</div></div>
-                        </div>
-                        <div class="match-video-space"></div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇯🇵 日本</div><div class="score-box">-</div></div>
-                            <div class="team-row"><div class="team-identity">🇸🇪 スウェーデン</div><div class="score-box">-</div></div>
-                        </div>
-                        <div class="match-video-space"></div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇹🇳 チュニジア</div><div class="score-box">-</div></div>
-                            <div class="team-row"><div class="team-identity">🇳🇱 オランダ</div><div class="score-box">-</div></div>
-                        </div>
-                        <div class="match-video-space"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="section-box">
-                <div class="section-box-title">Group G</div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇧🇪 ベルギー</div><div class="score-box">1</div></div>
-                            <div class="team-row"><div class="team-identity">🇪🇬 エジプト</div><div class="score-box">1</div></div>
-                        </div>
-                        <div class="match-video-space">
-                            <a href="https://www.youtube.com/watch?v=he4uXlFdyPI" target="_blank">
-                                <img src="https://img.youtube.com/vi/he4uXlFdyPI/mqdefault.jpg" alt="Highlight">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇮🇷 イラン</div><div class="score-box">2</div></div>
-                            <div class="team-row"><div class="team-identity">🇳🇿 ニュージーランド</div><div class="score-box">2</div></div>
-                        </div>
-                        <div class="match-video-space">
-                            <a href="https://www.youtube.com/watch?v=H5z7hqgQLxg" target="_blank">
-                                <img src="https://img.youtube.com/vi/H5z7hqgQLxg/mqdefault.jpg" alt="Highlight">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇧🇪 ベルギー</div><div class="score-box">-</div></div>
-                            <div class="team-row"><div class="team-identity">🇮🇷 イラン</div><div class="score-box">-</div></div>
-                        </div>
-                        <div class="match-video-space"></div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇳🇿 ニュージーランド</div><div class="score-box">-</div></div>
-                            <div class="team-row"><div class="team-identity">🇪🇬 エジプト</div><div class="score-box">-</div></div>
-                        </div>
-                        <div class="match-video-space"></div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇪🇬 エジプト</div><div class="score-box">-</div></div>
-                            <div class="team-row"><div class="team-identity">🇮🇷 イラン</div><div class="score-box">-</div></div>
-                        </div>
-                        <div class="match-video-space"></div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇳🇿 ニュージーランド</div><div class="score-box">-</div></div>
-                            <div class="team-row"><div class="team-identity">🇧🇪 ベルギー</div><div class="score-box">-</div></div>
-                        </div>
-                        <div class="match-video-space"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="section-box">
-                <div class="section-box-title">Group H</div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇸🇦 サウジアラビア</div><div class="score-box">1</div></div>
-                            <div class="team-row"><div class="team-identity">🇺🇾 ウルグアイ</div><div class="score-box">1</div></div>
-                        </div>
-                        <div class="match-video-space">
-                            <a href="https://www.youtube.com/watch?v=854ROSvN6hU" target="_blank">
-                                <img src="https://img.youtube.com/vi/854ROSvN6hU/mqdefault.jpg" alt="Highlight">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇪🇸 スペイン</div><div class="score-box">0</div></div>
-                            <div class="team-row"><div class="team-identity">🇨🇻 カーボベルデ</div><div class="score-box">0</div></div>
-                        </div>
-                        <div class="match-video-space">
-                            <a href="https://www.youtube.com/watch?v=nAMdH9UAuco" target="_blank">
-                                <img src="https://img.youtube.com/vi/nAMdH9UAuco/mqdefault.jpg" alt="Highlight">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇺🇾 ウルグアイ</div><div class="score-box">-</div></div>
-                            <div class="team-row"><div class="team-identity">🇨🇻 カーボベルデ</div><div class="score-box">-</div></div>
-                        </div>
-                        <div class="match-video-space"></div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇪🇸 スペイン</div><div class="score-box">-</div></div>
-                            <div class="team-row"><div class="team-identity">🇸🇦 サウジアラビア</div><div class="score-box">-</div></div>
-                        </div>
-                        <div class="match-video-space"></div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇨🇻 カーボベルデ</div><div class="score-box">-</div></div>
-                            <div class="team-row"><div class="team-identity">🇸🇦 サウジアラビア</div><div class="score-box">-</div></div>
-                        </div>
-                        <div class="match-video-space"></div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇺🇾 ウルグアイ</div><div class="score-box">-</div></div>
-                            <div class="team-row"><div class="team-identity">🇪🇸 スペイン</div><div class="score-box">-</div></div>
-                        </div>
-                        <div class="match-video-space"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="section-box">
-                <div class="section-box-title">Group I</div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇫🇷 フランス</div><div class="score-box">3</div></div>
-                            <div class="team-row"><div class="team-identity">🇸🇳 セネガル</div><div class="score-box">1</div></div>
-                        </div>
-                        <div class="match-video-space">
-                            <a href="https://www.youtube.com/watch?v=-J5rL21wEAs" target="_blank">
-                                <img src="https://img.youtube.com/vi/-J5rL21wEAs/mqdefault.jpg" alt="Highlight">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇮🇶 イラク</div><div class="score-box">1</div></div>
-                            <div class="team-row"><div class="team-identity">🇳🇴 ノルウェー</div><div class="score-box">4</div></div>
-                        </div>
-                        <div class="match-video-space">
-                            <a href="https://www.youtube.com/watch?v=kTeA-8JLM8Q" target="_blank">
-                                <img src="https://img.youtube.com/vi/kTeA-8JLM8Q/mqdefault.jpg" alt="Highlight">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇳🇴 ノルウェー</div><div class="score-box">-</div></div>
-                            <div class="team-row"><div class="team-identity">🇸🇳 セネガル</div><div class="score-box">-</div></div>
-                        </div>
-                        <div class="match-video-space"></div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇫🇷 フランス</div><div class="score-box">-</div></div>
-                            <div class="team-row"><div class="team-identity">🇮🇶 イラク</div><div class="score-box">-</div></div>
-                        </div>
-                        <div class="match-video-space"></div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇳🇴 ノルウェー</div><div class="score-box">-</div></div>
-                            <div class="team-row"><div class="team-identity">🇫🇷 フランス</div><div class="score-box">-</div></div>
-                        </div>
-                        <div class="match-video-space"></div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇸🇳 セネガル</div><div class="score-box">-</div></div>
-                            <div class="team-row"><div class="team-identity">🇮🇶 イラク</div><div class="score-box">-</div></div>
-                        </div>
-                        <div class="match-video-space"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="section-box">
-                <div class="section-box-title">Group J</div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇦🇷 アルゼンチン</div><div class="score-box">3</div></div>
-                            <div class="team-row"><div class="team-identity">🇩🇿 アルジェリア</div><div class="score-box">0</div></div>
-                        </div>
-                        <div class="match-video-space">
-                            <a href="https://www.youtube.com/watch?v=gExHNTYyusA" target="_blank">
-                                <img src="https://img.youtube.com/vi/gExHNTYyusA/mqdefault.jpg" alt="Highlight">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="match-card">
-                     <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇦🇹 オーストリア</div><div class="score-box">3</div></div>
-                            <div class="team-row"><div class="team-identity">🇯🇴 ヨルダン</div><div class="score-box">1</div></div>
-                        </div>
-                        <div class="match-video-space">
-                            <a href="https://www.youtube.com/watch?v=S-kRLhk7wvo" target="_blank">
-                                <img src="https://img.youtube.com/vi/S-kRLhk7wvo/mqdefault.jpg" alt="Highlight">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇦🇷 アルゼンチン</div><div class="score-box">-</div></div>
-                            <div class="team-row"><div class="team-identity">🇦🇹 オーストリア</div><div class="score-box">-</div></div>
-                        </div>
-                        <div class="match-video-space"></div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇯🇴 ヨルダン</div><div class="score-box">-</div></div>
-                            <div class="team-row"><div class="team-identity">🇩🇿 アルジェリア</div><div class="score-box">-</div></div>
-                        </div>
-                        <div class="match-video-space"></div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇩🇿 アルジェリア</div><div class="score-box">-</div></div>
-                            <div class="team-row"><div class="team-identity">🇦🇹 オーストリア</div><div class="score-box">-</div></div>
-                        </div>
-                        <div class="match-video-space"></div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇯🇴 ヨルダン</div><div class="score-box">-</div></div>
-                            <div class="team-row"><div class="team-identity">🇦🇷 アルゼンチン</div><div class="score-box">-</div></div>
-                        </div>
-                        <div class="match-video-space"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="section-box">
-                <div class="section-box-title">Group K</div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇵🇹 ポルトガル</div><div class="score-box">1</div></div>
-                            <div class="team-row"><div class="team-identity">🇨🇩 DRコンゴ</div><div class="score-box">1</div></div>
-                        </div>
-                        <div class="match-video-space">
-                            <a href="https://www.youtube.com/watch?v=_XPEH5LAlOs" target="_blank">
-                                <img src="https://img.youtube.com/vi/_XPEH5LAlOs/mqdefault.jpg" alt="Highlight">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇺🇿 ウズベキスタン</div><div class="score-box">1</div></div>
-                            <div class="team-row"><div class="team-identity">🇨🇴 コロンビア</div><div class="score-box">0</div></div>
-                        </div>
-                        <div class="match-video-space">
-                            <a href="https://www.youtube.com/watch?v=lZfqA5K0t-Q" target="_blank">
-                                <img src="https://img.youtube.com/vi/lZfqA5K0t-Q/mqdefault.jpg" alt="Highlight">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇵🇹 ポルトガル</div><div class="score-box">-</div></div>
-                            <div class="team-row"><div class="team-identity">🇺🇿 ウズベキスタン</div><div class="score-box">-</div></div>
-                        </div>
-                        <div class="match-video-space"></div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇨🇴 コロンビア</div><div class="score-box">-</div></div>
-                            <div class="team-row"><div class="team-identity">🇨🇩 DRコンゴ</div><div class="score-box">-</div></div>
-                        </div>
-                        <div class="match-video-space"></div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇨🇴 コロンビア</div><div class="score-box">-</div></div>
-                            <div class="team-row"><div class="team-identity">🇵🇹 ポルトガル</div><div class="score-box">-</div></div>
-                        </div>
-                        <div class="match-video-space"></div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇨🇩 DRコンゴ</div><div class="score-box">-</div></div>
-                            <div class="team-row"><div class="team-identity">🇺🇿 ウズベキスタン</div><div class="score-box">-</div></div>
-                        </div>
-                        <div class="match-video-space"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="section-box">
-                <div class="section-box-title">Group L</div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🏴󠁧󠁢󠁥󠁮󠁧󠁿 イングランド</div><div class="score-box">4</div></div>
-                            <div class="team-row"><div class="team-identity">🇭🇷 クロアチア</div><div class="score-box">2</div></div>
-                        </div>
-                        <div class="match-video-space">
-                            <a href="https://www.youtube.com/watch?v=opi0JMADRt4" target="_blank">
-                                <img src="https://img.youtube.com/vi/opi0JMADRt4/mqdefault.jpg" alt="Highlight">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇬🇭 ガーナ</div><div class="score-box">1</div></div>
-                            <div class="team-row"><div class="team-identity">🇵🇦 パナマ</div><div class="score-box">0</div></div>
-                        </div>
-                        <div class="match-video-space">
-                            <a href="https://www.youtube.com/watch?v=x8YbDZ2XJ5s" target="_blank">
-                                <img src="https://img.youtube.com/vi/x8YbDZ2XJ5s/mqdefault.jpg" alt="Highlight">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🏴󠁧󠁢󠁥󠁮󠁧󠁿 イングランド</div><div class="score-box">-</div></div>
-                            <div class="team-row"><div class="team-identity">🇬🇭 ガーナ</div><div class="score-box">-</div></div>
-                        </div>
-                        <div class="match-video-space"></div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇵🇦 パナマ</div><div class="score-box">-</div></div>
-                            <div class="team-row"><div class="team-identity">🇭🇷 クロアチア</div><div class="score-box">-</div></div>
-                        </div>
-                        <div class="match-video-space"></div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇵🇦 パナマ</div><div class="score-box">-</div></div>
-                            <div class="team-row"><div class="team-identity">🏴󠁧󠁢󠁥󠁮󠁧󠁿 イングランド</div><div class="score-box">-</div></div>
-                        </div>
-                        <div class="match-video-space"></div>
-                    </div>
-                </div>
-                <div class="match-card">
-                    <div class="match-body">
-                        <div class="match-teams-space">
-                            <div class="team-row"><div class="team-identity">🇭🇷 クロアチア</div><div class="score-box">-</div></div>
-                            <div class="team-row"><div class="team-identity">🇬🇭 ガーナ</div><div class="score-box">-</div></div>
-                        </div>
-                        <div class="match-video-space"></div>
-                    </div>
-                </div>
-            </div>
-
-        </section>
-
-        <section class="stage-page" id="page-knockout">
-            <div class="section-box">
-                <div class="section-box-title">ラウンド32</div>
-            </div>
-        </section>
-    </div>
-
-    <nav class="tab-nav">
-        <a href="#page-group" class="tab-item active" onclick="scrollToPage(0); return false;">グループステージ</a>
-        <a href="#page-knockout" class="tab-item" onclick="scrollToPage(1); return false;">決勝トーナメント</a>
-    </nav>
-
-    <script>
-        const slider = document.getElementById('mainSlider');
-        const tabs = document.querySelectorAll('.tab-item');
-
-        function scrollToPage(index) {
-            slider.scrollTo({ left: slider.clientWidth * index, behavior: 'smooth' });
-            updateTabActive(index);
-        }
-
-        function updateTabActive(activeIndex) {
-            tabs.forEach((tab, idx) => {
-                if (idx === activeIndex) tab.classList.add('active');
-                else tab.classList.remove('active');
+            header h1 {
+                font-size: 1.05rem;
+                font-weight: 900;
+                color: #ffffff;
+                letter-spacing: 0.08em;
+            }
+            
+            header h1 span {
+                color: var(--accent-lime);
+            }
+            
+            /* ==========================================================================
+               Slider Layout
+               ========================================================================== */
+            .slider-container {
+                display: flex;
+                width: 100%;
+                /* 計算を微調整してコンテンツエリアを最大化 */
+                height: calc(100vh - 72px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                scroll-behavior: smooth;
+            }
+            
+            .slider-container::-webkit-scrollbar {
+                display: none;
+            }
+            
+            /* ==========================================================================
+               Stage Page & Section Box (★1画面収め用の圧縮設計)
+               ========================================================================== */
+            .stage-page {
+                flex: 0 0 100%;
+                width: 100%;
+                height: 100%;
+                scroll-snap-align: start;
+                overflow-y: auto;
+                scroll-snap-type: y mandatory; 
+                scroll-behavior: smooth;
+                padding: 10px 10px 100px 10px; /* 余白をタイトに */
+            }
+            
+            .section-box {
+                background-color: var(--card-bg);
+                border-radius: 12px;
+                padding: 8px 10px 10px 10px; /* 内側の余白を圧縮 */
+                margin-bottom: 24px;
+                
+                scroll-snap-align: start; 
+                scroll-margin-top: 10px; 
+                
+                /* 画面下部で見切れないよう引き算を100pxに調整 */
+                height: calc(100vh - 190px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between; 
+                
+                border: 3px solid var(--primary-navy);
+                box-shadow: 4px 4px 0px var(--accent-lime);
+            }
+            
+            .section-box-title {
+                font-size: 1.5rem;
+                font-weight: 900;
+                color: var(--primary-navy);
+                padding-bottom: 2px;
+                margin-bottom: 4px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            
+            /* ==========================================================================
+               極限圧縮 試合カード + YouTubeミニエリア
+               ========================================================================== */
+            .match-card {
+                border: 2px solid var(--border-color);
+                border-radius: 6px;
+                overflow: hidden;
+                background: var(--card-bg);
+                display: flex;
+                flex-direction: column;
+                flex: 1;
+                max-height: 78px;
+                margin-bottom: 4px; /* カード間の隙間を詰め、縦を節約 */
+            }
+            .match-card:last-child {
+                margin-bottom: 0;
+            }
+            
+            /* メタバーの縦パディングを限界まで凝縮 */
+            .match-meta-bar {
+                background: var(--bg-color);
+                padding: 2px 6px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                font-size: 0.65rem;
+                border-bottom: 1px solid var(--border-color);
+                line-height: 1.2;
+            }
+            
+            .match-num {
+                font-weight: 800;
+                color: var(--accent-blue);
+            }
+            
+            .match-time {
+                color: var(--text-sub);
+                font-weight: 600;
+            }
+            
+            /* 対戦エリアのパディングを極小に */
+            .match-body {
+                padding: 2px 6px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 6px;
+                flex: 1;
+            }
+            
+            .match-teams-space {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 4px; /* チーム間の隙間を限界まで詰める */
+            }
+            
+            .team-row {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start; /* ★ 左寄せにします */
+                font-size: 1.1rem;
+                font-weight: 700;
+                line-height: 1.2;
+            }
+            
+            .team-identity {
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                width: 170px;                /* ★ チーム名エリアの幅を固定して、スコアの位置を揃えます */
+                flex-shrink: 0;              /* ★ 画面が狭くなっても幅を維持します */
+            }
+            
+            .score-box {
+                font-size: 1.1rem;
+                font-weight: 800;
+                color: var(--accent-blue);
+            }
+            
+            /* ★YouTube動画スペースのベース（グレーの背景を削除） */
+            .match-video-space {
+                width: 112px;         
+                height: 63px;        
+                background-color: transparent; /* 💡薄グレーの背景を透明にします */
+                border-radius: 3px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
+                border: 1px solid var(--border-color);
+                position: relative;
+                flex-shrink: 0;     
+            }
+            
+            /* リンクと画像をカードいっぱいに広げる */
+            .match-video-space a {
+                display: block;
+                width: 100%;
+                height: 100%;
+                position: relative; /* 💡アイコンを中央に配置するための基準にします */
+            }
+            
+            .match-video-space img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border: none;
+                display: block;
+            }
+            
+            /* サムネイル中央に本物のYouTubeロゴマークを配置 */
+            .match-video-space a::after {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%); /* 完全に中央に配置 */
+                
+                /* 公式のYouTubeアイコンの画像(SVG)を直接背景として読み込みます */
+                width: 24px;
+                height: 18px;
+                background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="%23ff0000" d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305z"/><path fill="%23ffffff" d="M232.145 347.617V174.38L394.17 255.81l-162.025 91.807z"/></svg>');            background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+                
+                filter: drop-shadow(0px 1px 3px rgba(0,0,0,0.4));
+                pointer-events: none; /* タップの邪魔をしない設定 */
+                opacity: 0.9;
+                transition: opacity 0.2s;
+            }
+            
+            /* タップ（ホバー）したときに見やすくする演出 */
+            .match-video-space a:active::after {
+                opacity: 1;
+            }
+            
+            /* ==========================================================================
+               Tab Navigation
+               ========================================================================== */
+            nav.tab-nav {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary-navy);
+                display: flex;
+                padding-bottom: env(safe-area-inset-bottom);
+                z-index: 100;
+            }
+            
+            .tab-item {
+                flex: 1;
+                padding: 12px 10px; /* タブも少しだけスマートに */
+                text-align: center;
+                color: rgba(255, 255, 255, 0.6);
+                font-size: 0.75rem;
+                font-weight: 800;
+                text-decoration: none;
+                transition: background 0.2s, color 0.2s;
+            }
+            
+            .tab-item.active {
+                color: var(--accent-lime);
+                background-color: rgba(255, 255, 255, 0.05);
+                box-shadow: inset 0 -4px 0 var(--accent-lime);
+            }
+        </style>
+    </head>
+    <body>
+    
+        <header>
+            <h1>FIFA WORLD CUP <span>2026</span></h1>
+        </header>
+    
+        <div class="slider-container" id="mainSlider">
+    
+            <section class="stage-page" id="page-group">
+             
+                <div class="section-box">
+                    <div class="section-box-title">Group A</div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇲🇽 メキシコ</div><div class="score-box">2</div></div>
+                                <div class="team-row"><div class="team-identity">🇿🇦 南アフリカ</div><div class="score-box">0</div></div>
+                            </div>
+                            <div class="match-video-space">
+                                <a href="https://www.youtube.com/watch?v=HxHaup6d_wM" target="_blank">
+                                    <img src="https://img.youtube.com/vi/HxHaup6d_wM/mqdefault.jpg" alt="Highlight">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇰🇷 韓国</div><div class="score-box">2</div></div>
+                                <div class="team-row"><div class="team-identity">🇨🇿 チェコ</div><div class="score-box">1</div></div>
+                            </div>
+                            <div class="match-video-space">
+                                <a href="https://www.youtube.com/watch?v=NPLKCfPnmzE" target="_blank">
+                                    <img src="https://img.youtube.com/vi/NPLKCfPnmzE/mqdefault.jpg" alt="Highlight">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇨🇿 チェコ</div><div class="score-box">1</div></div>
+                                <div class="team-row"><div class="team-identity">🇿🇦 南アフリカ</div><div class="score-box">1</div></div>
+                            </div>
+                            <div class="match-video-space">
+                                <a href="https://www.youtube.com/watch?v=qXveo5ydio4" target="_blank">
+                                    <img src="https://img.youtube.com/vi/qXveo5ydio4/mqdefault.jpg" alt="Highlight">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                         <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇲🇽 メキシコ</div><div class="score-box">1</div></div>
+                                <div class="team-row"><div class="team-identity">🇰🇷 韓国</div><div class="score-box">0</div></div>
+                            </div>
+                            <div class="match-video-space">
+                                <a href="https://www.youtube.com/watch?v=bcOLyzZMxMU" target="_blank">
+                                    <img src="https://img.youtube.com/vi/bcOLyzZMxMU/mqdefault.jpg" alt="Highlight">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇨🇿 チェコ</div><div class="score-box">-</div></div>
+                                <div class="team-row"><div class="team-identity">🇲🇽 メキシコ</div><div class="score-box">-</div></div>
+                            </div>
+                            <div class="match-video-space"></div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇿🇦 南アフリカ</div><div class="score-box">-</div></div>
+                                <div class="team-row"><div class="team-identity">🇰🇷 韓国</div><div class="score-box">-</div></div>
+                            </div>
+                            <div class="match-video-space"></div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="section-box">
+                    <div class="section-box-title">Group B</div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇨🇦 カナダ</div><div class="score-box">1</div></div>
+                                <div class="team-row"><div class="team-identity">🇧🇦 ボスニア・H</div><div class="score-box">1</div></div>
+                            </div>
+                            <div class="match-video-space">
+                                <a href="https://www.youtube.com/watch?v=URvgDf2be9c" target="_blank">
+                                    <img src="https://img.youtube.com/vi/URvgDf2be9c/mqdefault.jpg" alt="Highlight">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇶🇦 カタール</div><div class="score-box">1</div></div>
+                                <div class="team-row"><div class="team-identity">🇨🇭 スイス</div><div class="score-box">1</div></div>
+                            </div>
+                            <div class="match-video-space">
+                                <a href="https://www.youtube.com/watch?v=IZQyjFfQqfc" target="_blank">
+                                    <img src="https://img.youtube.com/vi/IZQyjFfQqfc/mqdefault.jpg" alt="Highlight">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇨🇭 スイス</div><div class="score-box">4</div></div>
+                                <div class="team-row"><div class="team-identity">🇧🇦 ボスニア・H</div><div class="score-box">1</div></div>
+                            </div>
+                            <div class="match-video-space">
+                                <a href="https://www.youtube.com/watch?v=fYSgjXZaQIA" target="_blank">
+                                    <img src="https://img.youtube.com/vi/fYSgjXZaQIA/mqdefault.jpg" alt="Highlight">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇨🇦 カナダ</div><div class="score-box">6</div></div>
+                                <div class="team-row"><div class="team-identity">🇶🇦 カタール</div><div class="score-box">0</div></div>
+                            </div>
+                            <div class="match-video-space">
+                                <a href="https://www.youtube.com/watch?v=9rW5NO8ouGU" target="_blank">
+                                    <img src="https://img.youtube.com/vi/9rW5NO8ouGU/mqdefault.jpg" alt="Highlight">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇨🇭 スイス</div><div class="score-box">-</div></div>
+                                <div class="team-row"><div class="team-identity">🇨🇦 カナダ</div><div class="score-box">-</div></div>
+                            </div>
+                            <div class="match-video-space"></div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇧🇦 ボスニア・H</div><div class="score-box">-</div></div>
+                                <div class="team-row"><div class="team-identity">🇶🇦 カタール</div><div class="score-box">-</div></div>
+                            </div>
+                            <div class="match-video-space"></div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="section-box">
+                    <div class="section-box-title">Group C</div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇭🇹 ハイチ</div><div class="score-box">0</div></div>
+                                <div class="team-row"><div class="team-identity">🏴󠁧󠁢󠁳󠁣󠁴󠁿 スコットランド</div><div class="score-box">1</div></div>
+                            </div>
+                            <div class="match-video-space">
+                                <a href="https://www.youtube.com/watch?v=FnhbPSJXPNY" target="_blank">
+                                    <img src="https://img.youtube.com/vi/FnhbPSJXPNY/mqdefault.jpg" alt="Highlight">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇧🇷 ブラジル</div><div class="score-box">1</div></div>
+                                <div class="team-row"><div class="team-identity">🇲🇦 モロッコ</div><div class="score-box">1</div></div>
+                            </div>
+                            <div class="match-video-space">
+                                <a href="https://www.youtube.com/watch?v=yhuXl2aHrLY" target="_blank">
+                                    <img src="https://img.youtube.com/vi/yhuXl2aHrLY/mqdefault.jpg" alt="Highlight">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇧🇷 ブラジル</div><div class="score-box">3</div></div>
+                                <div class="team-row"><div class="team-identity">🇭🇹 ハイチ</div><div class="score-box">0</div></div>
+                            </div>
+                            <div class="match-video-space">
+                                <a href="https://www.youtube.com/watch?v=Wnf2zqWAC1c" target="_blank">
+                                    <img src="https://img.youtube.com/vi/Wnf2zqWAC1c/mqdefault.jpg" alt="Highlight">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🏴󠁧󠁢󠁳󠁣󠁴󠁿 スコットランド</div><div class="score-box">0</div></div>
+                                <div class="team-row"><div class="team-identity">🇲🇦 モロッコ</div><div class="score-box">1</div></div>
+                            </div>
+                            <div class="match-video-space">
+                                <a href="https://www.youtube.com/watch?v=vTnr9zsUVyM" target="_blank">
+                                    <img src="https://img.youtube.com/vi/vTnr9zsUVyM/mqdefault.jpg" alt="Highlight">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🏴󠁧󠁢󠁳󠁣󠁴󠁿 スコットランド</div><div class="score-box">-</div></div>
+                                <div class="team-row"><div class="team-identity">🇧🇷 ブラジル</div><div class="score-box">-</div></div>
+                            </div>
+                            <div class="match-video-space"></div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇲🇦 モロッコ</div><div class="score-box">-</div></div>
+                                <div class="team-row"><div class="team-identity">🇭🇹 ハイチ</div><div class="score-box">-</div></div>
+                            </div>
+                            <div class="match-video-space"></div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="section-box">
+                    <div class="section-box-title">Group D</div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇺🇸 アメリカ</div><div class="score-box">4</div></div>
+                                <div class="team-row"><div class="team-identity">🇵🇾 パラグアイ</div><div class="score-box">1</div></div>
+                            </div>
+                            <div class="match-video-space">
+                                <a href="https://www.youtube.com/watch?v=DBp42UyYvQE" target="_blank">
+                                    <img src="https://img.youtube.com/vi/DBp42UyYvQE/mqdefault.jpg" alt="Highlight">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇦🇺 オーストラリア</div><div class="score-box">2</div></div>
+                                <div class="team-row"><div class="team-identity">🇹🇷 トルコ</div><div class="score-box">0</div></div>
+                            </div>
+                            <div class="match-video-space">
+                                <a href="https://www.youtube.com/watch?v=n3G2hHWBHWM" target="_blank">
+                                    <img src="https://img.youtube.com/vi/n3G2hHWBHWM/mqdefault.jpg" alt="Highlight">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇺🇸 アメリカ</div><div class="score-box">2</div></div>
+                                <div class="team-row"><div class="team-identity">🇦🇺 オーストラリア</div><div class="score-box">0</div></div>
+                            </div>
+                            <div class="match-video-space">
+                                <a href="https://www.youtube.com/watch?v=nNwdg0m6G6A" target="_blank">
+                                    <img src="https://img.youtube.com/vi/nNwdg0m6G6A/mqdefault.jpg" alt="Highlight">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇹🇷 トルコ</div><div class="score-box">0</div></div>
+                                <div class="team-row"><div class="team-identity">🇵🇾 パラグアイ</div><div class="score-box">1</div></div>
+                            </div>
+                            <div class="match-video-space">
+                                <a href="https://www.youtube.com/watch?v=D9lZubMQlT4" target="_blank">
+                                    <img src="https://img.youtube.com/vi/D9lZubMQlT4/mqdefault.jpg" alt="Highlight">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇹🇷 トルコ</div><div class="score-box">-</div></div>
+                                <div class="team-row"><div class="team-identity">🇺🇸 アメリカ</div><div class="score-box">-</div></div>
+                            </div>
+                            <div class="match-video-space"></div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇵🇾 パラグアイ</div><div class="score-box">-</div></div>
+                                <div class="team-row"><div class="team-identity">🇦🇺 オーストラリア</div><div class="score-box">-</div></div>
+                            </div>
+                            <div class="match-video-space"></div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="section-box">
+                    <div class="section-box-title">Group E</div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇨🇮 コートジボワール</div><div class="score-box">1</div></div>
+                                <div class="team-row"><div class="team-identity">🇪🇨 エクアドル</div><div class="score-box">0</div></div>
+                            </div>
+                            <div class="match-video-space">
+                                <a href="https://www.youtube.com/watch?v=mov67UkdezM" target="_blank">
+                                    <img src="https://img.youtube.com/vi/mov67UkdezM/mqdefault.jpg" alt="Highlight">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇩🇪 ドイツ</div><div class="score-box">7</div></div>
+                                <div class="team-row"><div class="team-identity">🇨🇼 キュラソー</div><div class="score-box">1</div></div>
+                            </div>
+                            <div class="match-video-space">
+                                <a href="https://www.youtube.com/watch?v=_hpIHERSBEs" target="_blank">
+                                    <img src="https://img.youtube.com/vi/_hpIHERSBEs/mqdefault.jpg" alt="Highlight">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇩🇪 ドイツ</div><div class="score-box">-</div></div>
+                                <div class="team-row"><div class="team-identity">🇨🇮 コートジボワール</div><div class="score-box">-</div></div>
+                            </div>
+                            <div class="match-video-space"></div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇪🇨 エクアドル</div><div class="score-box">-</div></div>
+                                <div class="team-row"><div class="team-identity">🇨🇼 キュラソー</div><div class="score-box">-</div></div>
+                            </div>
+                            <div class="match-video-space"></div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇨🇼 キュラソー</div><div class="score-box">-</div></div>
+                                <div class="team-row"><div class="team-identity">🇨🇮 コートジボワール</div><div class="score-box">-</div></div>
+                            </div>
+                            <div class="match-video-space"></div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇪🇨 エクアドル</div><div class="score-box">-</div></div>
+                                <div class="team-row"><div class="team-identity">🇩🇪 ドイツ</div><div class="score-box">-</div></div>
+                            </div>
+                            <div class="match-video-space"></div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="section-box">
+                    <div class="section-box-title">Group F</div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇳🇱 オランダ</div><div class="score-box">2</div></div>
+                                <div class="team-row"><div class="team-identity">🇯🇵 日本</div><div class="score-box">2</div></div>
+                            </div>
+                            <div class="match-video-space">
+                                <a href="https://www.youtube.com/watch?v=3jIMk43CECY" target="_blank">
+                                    <img src="https://img.youtube.com/vi/3jIMk43CECY/mqdefault.jpg" alt="Highlight">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇸🇪 スウェーデン</div><div class="score-box">5</div></div>
+                                <div class="team-row"><div class="team-identity">🇹🇳 チュニジア</div><div class="score-box">1</div></div>
+                            </div>
+                            <div class="match-video-space">
+                                <a href="https://www.youtube.com/watch?v=l6bkoYyr-c4" target="_blank">
+                                    <img src="https://img.youtube.com/vi/l6bkoYyr-c4/mqdefault.jpg" alt="Highlight">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇳🇱 オランダ</div><div class="score-box">5</div></div>
+                                <div class="team-row"><div class="team-identity">🇸🇪 スウェーデン</div><div class="score-box">1</div></div>
+                            </div>
+                            <div class="match-video-space">
+                                <a href="https://www.youtube.com/watch?v=73dazX0rQTc" target="_blank">
+                                    <img src="https://img.youtube.com/vi/73dazX0rQTc/mqdefault.jpg" alt="Highlight">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇹🇳 チュニジア</div><div class="score-box">-</div></div>
+                                <div class="team-row"><div class="team-identity">🇯🇵 日本</div><div class="score-box">-</div></div>
+                            </div>
+                            <div class="match-video-space"></div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇯🇵 日本</div><div class="score-box">-</div></div>
+                                <div class="team-row"><div class="team-identity">🇸🇪 スウェーデン</div><div class="score-box">-</div></div>
+                            </div>
+                            <div class="match-video-space"></div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇹🇳 チュニジア</div><div class="score-box">-</div></div>
+                                <div class="team-row"><div class="team-identity">🇳🇱 オランダ</div><div class="score-box">-</div></div>
+                            </div>
+                            <div class="match-video-space"></div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="section-box">
+                    <div class="section-box-title">Group G</div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇧🇪 ベルギー</div><div class="score-box">1</div></div>
+                                <div class="team-row"><div class="team-identity">🇪🇬 エジプト</div><div class="score-box">1</div></div>
+                            </div>
+                            <div class="match-video-space">
+                                <a href="https://www.youtube.com/watch?v=he4uXlFdyPI" target="_blank">
+                                    <img src="https://img.youtube.com/vi/he4uXlFdyPI/mqdefault.jpg" alt="Highlight">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇮🇷 イラン</div><div class="score-box">2</div></div>
+                                <div class="team-row"><div class="team-identity">🇳🇿 ニュージーランド</div><div class="score-box">2</div></div>
+                            </div>
+                            <div class="match-video-space">
+                                <a href="https://www.youtube.com/watch?v=H5z7hqgQLxg" target="_blank">
+                                    <img src="https://img.youtube.com/vi/H5z7hqgQLxg/mqdefault.jpg" alt="Highlight">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇧🇪 ベルギー</div><div class="score-box">-</div></div>
+                                <div class="team-row"><div class="team-identity">🇮🇷 イラン</div><div class="score-box">-</div></div>
+                            </div>
+                            <div class="match-video-space"></div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇳🇿 ニュージーランド</div><div class="score-box">-</div></div>
+                                <div class="team-row"><div class="team-identity">🇪🇬 エジプト</div><div class="score-box">-</div></div>
+                            </div>
+                            <div class="match-video-space"></div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇪🇬 エジプト</div><div class="score-box">-</div></div>
+                                <div class="team-row"><div class="team-identity">🇮🇷 イラン</div><div class="score-box">-</div></div>
+                            </div>
+                            <div class="match-video-space"></div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇳🇿 ニュージーランド</div><div class="score-box">-</div></div>
+                                <div class="team-row"><div class="team-identity">🇧🇪 ベルギー</div><div class="score-box">-</div></div>
+                            </div>
+                            <div class="match-video-space"></div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="section-box">
+                    <div class="section-box-title">Group H</div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇸🇦 サウジアラビア</div><div class="score-box">1</div></div>
+                                <div class="team-row"><div class="team-identity">🇺🇾 ウルグアイ</div><div class="score-box">1</div></div>
+                            </div>
+                            <div class="match-video-space">
+                                <a href="https://www.youtube.com/watch?v=854ROSvN6hU" target="_blank">
+                                    <img src="https://img.youtube.com/vi/854ROSvN6hU/mqdefault.jpg" alt="Highlight">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇪🇸 スペイン</div><div class="score-box">0</div></div>
+                                <div class="team-row"><div class="team-identity">🇨🇻 カーボベルデ</div><div class="score-box">0</div></div>
+                            </div>
+                            <div class="match-video-space">
+                                <a href="https://www.youtube.com/watch?v=nAMdH9UAuco" target="_blank">
+                                    <img src="https://img.youtube.com/vi/nAMdH9UAuco/mqdefault.jpg" alt="Highlight">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇺🇾 ウルグアイ</div><div class="score-box">-</div></div>
+                                <div class="team-row"><div class="team-identity">🇨🇻 カーボベルデ</div><div class="score-box">-</div></div>
+                            </div>
+                            <div class="match-video-space"></div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇪🇸 スペイン</div><div class="score-box">-</div></div>
+                                <div class="team-row"><div class="team-identity">🇸🇦 サウジアラビア</div><div class="score-box">-</div></div>
+                            </div>
+                            <div class="match-video-space"></div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇨🇻 カーボベルデ</div><div class="score-box">-</div></div>
+                                <div class="team-row"><div class="team-identity">🇸🇦 サウジアラビア</div><div class="score-box">-</div></div>
+                            </div>
+                            <div class="match-video-space"></div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇺🇾 ウルグアイ</div><div class="score-box">-</div></div>
+                                <div class="team-row"><div class="team-identity">🇪🇸 スペイン</div><div class="score-box">-</div></div>
+                            </div>
+                            <div class="match-video-space"></div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="section-box">
+                    <div class="section-box-title">Group I</div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇫🇷 フランス</div><div class="score-box">3</div></div>
+                                <div class="team-row"><div class="team-identity">🇸🇳 セネガル</div><div class="score-box">1</div></div>
+                            </div>
+                            <div class="match-video-space">
+                                <a href="https://www.youtube.com/watch?v=-J5rL21wEAs" target="_blank">
+                                    <img src="https://img.youtube.com/vi/-J5rL21wEAs/mqdefault.jpg" alt="Highlight">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇮🇶 イラク</div><div class="score-box">1</div></div>
+                                <div class="team-row"><div class="team-identity">🇳🇴 ノルウェー</div><div class="score-box">4</div></div>
+                            </div>
+                            <div class="match-video-space">
+                                <a href="https://www.youtube.com/watch?v=kTeA-8JLM8Q" target="_blank">
+                                    <img src="https://img.youtube.com/vi/kTeA-8JLM8Q/mqdefault.jpg" alt="Highlight">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇳🇴 ノルウェー</div><div class="score-box">-</div></div>
+                                <div class="team-row"><div class="team-identity">🇸🇳 セネガル</div><div class="score-box">-</div></div>
+                            </div>
+                            <div class="match-video-space"></div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇫🇷 フランス</div><div class="score-box">-</div></div>
+                                <div class="team-row"><div class="team-identity">🇮🇶 イラク</div><div class="score-box">-</div></div>
+                            </div>
+                            <div class="match-video-space"></div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇳🇴 ノルウェー</div><div class="score-box">-</div></div>
+                                <div class="team-row"><div class="team-identity">🇫🇷 フランス</div><div class="score-box">-</div></div>
+                            </div>
+                            <div class="match-video-space"></div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇸🇳 セネガル</div><div class="score-box">-</div></div>
+                                <div class="team-row"><div class="team-identity">🇮🇶 イラク</div><div class="score-box">-</div></div>
+                            </div>
+                            <div class="match-video-space"></div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="section-box">
+                    <div class="section-box-title">Group J</div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇦🇷 アルゼンチン</div><div class="score-box">3</div></div>
+                                <div class="team-row"><div class="team-identity">🇩🇿 アルジェリア</div><div class="score-box">0</div></div>
+                            </div>
+                            <div class="match-video-space">
+                                <a href="https://www.youtube.com/watch?v=gExHNTYyusA" target="_blank">
+                                    <img src="https://img.youtube.com/vi/gExHNTYyusA/mqdefault.jpg" alt="Highlight">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                         <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇦🇹 オーストリア</div><div class="score-box">3</div></div>
+                                <div class="team-row"><div class="team-identity">🇯🇴 ヨルダン</div><div class="score-box">1</div></div>
+                            </div>
+                            <div class="match-video-space">
+                                <a href="https://www.youtube.com/watch?v=S-kRLhk7wvo" target="_blank">
+                                    <img src="https://img.youtube.com/vi/S-kRLhk7wvo/mqdefault.jpg" alt="Highlight">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇦🇷 アルゼンチン</div><div class="score-box">-</div></div>
+                                <div class="team-row"><div class="team-identity">🇦🇹 オーストリア</div><div class="score-box">-</div></div>
+                            </div>
+                            <div class="match-video-space"></div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇯🇴 ヨルダン</div><div class="score-box">-</div></div>
+                                <div class="team-row"><div class="team-identity">🇩🇿 アルジェリア</div><div class="score-box">-</div></div>
+                            </div>
+                            <div class="match-video-space"></div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇩🇿 アルジェリア</div><div class="score-box">-</div></div>
+                                <div class="team-row"><div class="team-identity">🇦🇹 オーストリア</div><div class="score-box">-</div></div>
+                            </div>
+                            <div class="match-video-space"></div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇯🇴 ヨルダン</div><div class="score-box">-</div></div>
+                                <div class="team-row"><div class="team-identity">🇦🇷 アルゼンチン</div><div class="score-box">-</div></div>
+                            </div>
+                            <div class="match-video-space"></div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="section-box">
+                    <div class="section-box-title">Group K</div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇵🇹 ポルトガル</div><div class="score-box">1</div></div>
+                                <div class="team-row"><div class="team-identity">🇨🇩 DRコンゴ</div><div class="score-box">1</div></div>
+                            </div>
+                            <div class="match-video-space">
+                                <a href="https://www.youtube.com/watch?v=_XPEH5LAlOs" target="_blank">
+                                    <img src="https://img.youtube.com/vi/_XPEH5LAlOs/mqdefault.jpg" alt="Highlight">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇺🇿 ウズベキスタン</div><div class="score-box">1</div></div>
+                                <div class="team-row"><div class="team-identity">🇨🇴 コロンビア</div><div class="score-box">0</div></div>
+                            </div>
+                            <div class="match-video-space">
+                                <a href="https://www.youtube.com/watch?v=lZfqA5K0t-Q" target="_blank">
+                                    <img src="https://img.youtube.com/vi/lZfqA5K0t-Q/mqdefault.jpg" alt="Highlight">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇵🇹 ポルトガル</div><div class="score-box">-</div></div>
+                                <div class="team-row"><div class="team-identity">🇺🇿 ウズベキスタン</div><div class="score-box">-</div></div>
+                            </div>
+                            <div class="match-video-space"></div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇨🇴 コロンビア</div><div class="score-box">-</div></div>
+                                <div class="team-row"><div class="team-identity">🇨🇩 DRコンゴ</div><div class="score-box">-</div></div>
+                            </div>
+                            <div class="match-video-space"></div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇨🇴 コロンビア</div><div class="score-box">-</div></div>
+                                <div class="team-row"><div class="team-identity">🇵🇹 ポルトガル</div><div class="score-box">-</div></div>
+                            </div>
+                            <div class="match-video-space"></div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇨🇩 DRコンゴ</div><div class="score-box">-</div></div>
+                                <div class="team-row"><div class="team-identity">🇺🇿 ウズベキスタン</div><div class="score-box">-</div></div>
+                            </div>
+                            <div class="match-video-space"></div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="section-box">
+                    <div class="section-box-title">Group L</div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🏴󠁧󠁢󠁥󠁮󠁧󠁿 イングランド</div><div class="score-box">4</div></div>
+                                <div class="team-row"><div class="team-identity">🇭🇷 クロアチア</div><div class="score-box">2</div></div>
+                            </div>
+                            <div class="match-video-space">
+                                <a href="https://www.youtube.com/watch?v=opi0JMADRt4" target="_blank">
+                                    <img src="https://img.youtube.com/vi/opi0JMADRt4/mqdefault.jpg" alt="Highlight">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇬🇭 ガーナ</div><div class="score-box">1</div></div>
+                                <div class="team-row"><div class="team-identity">🇵🇦 パナマ</div><div class="score-box">0</div></div>
+                            </div>
+                            <div class="match-video-space">
+                                <a href="https://www.youtube.com/watch?v=x8YbDZ2XJ5s" target="_blank">
+                                    <img src="https://img.youtube.com/vi/x8YbDZ2XJ5s/mqdefault.jpg" alt="Highlight">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🏴󠁧󠁢󠁥󠁮󠁧󠁿 イングランド</div><div class="score-box">-</div></div>
+                                <div class="team-row"><div class="team-identity">🇬🇭 ガーナ</div><div class="score-box">-</div></div>
+                            </div>
+                            <div class="match-video-space"></div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇵🇦 パナマ</div><div class="score-box">-</div></div>
+                                <div class="team-row"><div class="team-identity">🇭🇷 クロアチア</div><div class="score-box">-</div></div>
+                            </div>
+                            <div class="match-video-space"></div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇵🇦 パナマ</div><div class="score-box">-</div></div>
+                                <div class="team-row"><div class="team-identity">🏴󠁧󠁢󠁥󠁮󠁧󠁿 イングランド</div><div class="score-box">-</div></div>
+                            </div>
+                            <div class="match-video-space"></div>
+                        </div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-body">
+                            <div class="match-teams-space">
+                                <div class="team-row"><div class="team-identity">🇭🇷 クロアチア</div><div class="score-box">-</div></div>
+                                <div class="team-row"><div class="team-identity">🇬🇭 ガーナ</div><div class="score-box">-</div></div>
+                            </div>
+                            <div class="match-video-space"></div>
+                        </div>
+                    </div>
+                </div>
+    
+            </section>
+    
+            <section class="stage-page" id="page-knockout">
+                <div class="section-box">
+                    <div class="section-box-title">ラウンド32</div>
+                </div>
+            </section>
+        </div>
+    
+        <nav class="tab-nav">
+            <a href="#page-group" class="tab-item active" onclick="scrollToPage(0); return false;">グループステージ</a>
+            <a href="#page-knockout" class="tab-item" onclick="scrollToPage(1); return false;">決勝トーナメント</a>
+        </nav>
+    
+        <script>
+            const slider = document.getElementById('mainSlider');
+            const tabs = document.querySelectorAll('.tab-item');
+    
+            function scrollToPage(index) {
+                slider.scrollTo({ left: slider.clientWidth * index, behavior: 'smooth' });
+                updateTabActive(index);
+            }
+    
+            function updateTabActive(activeIndex) {
+                tabs.forEach((tab, idx) => {
+                    if (idx === activeIndex) tab.classList.add('active');
+                    else tab.classList.remove('active');
+                });
+            }
+    
+            slider.addEventListener('scroll', () => {
+                const index = Math.round(slider.scrollLeft / slider.clientWidth);
+                updateTabActive(index);
             });
-        }
-
-        slider.addEventListener('scroll', () => {
-            const index = Math.round(slider.scrollLeft / slider.clientWidth);
-            updateTabActive(index);
-        });
-    </script>
-</body>
-</html>
+        </script>
+    </body>
+    </html>
+    
