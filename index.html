@@ -10,27 +10,25 @@
            ========================================================================== */
         
         :root {
-            /* 全体を明るい白ベースに変更 */
-            --bg-color: #f8f9fa;         /* メイン背景（クリーンな薄グレー） */
-            --card-bg: #ffffff;          /* カード背景（純白） */
-            --primary-navy: #0b0d16;     /* ヘッダー等に使う引き締め用の紺 */
-            --border-color: #e9ecef;     /* 軽快な境界線 */
+            --bg-color: #f8f9fa;         
+            --card-bg: #ffffff;          
+            --primary-navy: #0b0d16;     
+            --border-color: #e9ecef;     
         
-            /* 画像から抽出したポップでビビッドなアクセント */
-            --accent-lime: #b9eb0b;      /* 中央「26」のネオンライムグリーン */
-            --accent-emerald: #08ca5d;   /* トロフィー台座のエメラルドグリーン */
-            --accent-red: #eb2504;       /* 情熱的なビビッドレッド */
-            --accent-blue: #3757fb;      /* 背景の鮮やかなブルー */
-            --trophy-gold: #f3a712;      /* 日本所属グループ用のゴールド境界線 */
+            /* ポップアクセント */
+            --accent-lime: #b9eb0b;      
+            --accent-emerald: #08ca5d;   
+            --accent-red: #eb2504;       
+            --accent-blue: #3757fb;      
+            --trophy-gold: #f3a712;      
             
-            /* テキストカラー */
             --text-main: #212529;        
             --text-sub: #6c757d;         
-            --video-bg: #f1f3f5;         /* YouTubeエリアのプレースホルダー背景 */
+            --video-bg: #f1f3f5;         
         }
         
         /* ==========================================================================
-           Reset & Base Layout (縦方向のスナップを有効化)
+           Reset & Base Layout
            ========================================================================== */
         * {
             box-sizing: border-box;
@@ -50,36 +48,37 @@
         }
         
         /* ==========================================================================
-           Header (Fixed Top)
+           Header (高さをややタイトに)
            ========================================================================== */
         header {
             background-color: var(--primary-navy);
-            padding: 12px;
-            padding-top: calc(12px + env(safe-area-inset-top));
+            padding: 10px;
+            padding-top: calc(10px + env(safe-area-inset-top));
             text-align: center;
             z-index: 10;
             position: relative;
-            border-bottom: 3px solid var(--accent-red); /* ビビッドレッドのアクセント */
+            border-bottom: 3px solid var(--accent-red);
         }
         
         header h1 {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 900;
             color: #ffffff;
             letter-spacing: 0.08em;
         }
         
         header h1 span {
-            color: var(--accent-lime); /* ライムグリーンをアクセントに */
+            color: var(--accent-lime);
         }
         
         /* ==========================================================================
-           Slider Layout (横スクロール)
+           Slider Layout
            ========================================================================== */
         .slider-container {
             display: flex;
             width: 100%;
-            height: calc(100vh - 78px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+            /* 計算を微調整してコンテンツエリアを最大化 */
+            height: calc(100vh - 72px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
             overflow-x: auto;
             scroll-snap-type: x mandatory;
             scroll-behavior: smooth;
@@ -90,7 +89,7 @@
         }
         
         /* ==========================================================================
-           Stage Page & Section Box (★縦方向スクロールスナップのコア設定)
+           Stage Page & Section Box (★1画面収め用の圧縮設計)
            ========================================================================== */
         .stage-page {
             flex: 0 0 100%;
@@ -98,70 +97,69 @@
             height: 100%;
             scroll-snap-align: start;
             overflow-y: auto;
-            
-            /* 縦スワイプ時に各グループ位置で固定する設定 */
             scroll-snap-type: y mandatory; 
             scroll-behavior: smooth;
-            padding: 12px 12px 100px 12px;
+            padding: 10px 10px 100px 10px; /* 余白をタイトに */
         }
         
-        /* 各グループのボックスを1画面に収め、スナップの固定位置にする */
         .section-box {
             background-color: var(--card-bg);
-            border-radius: 16px;
-            padding: 12px;
+            border-radius: 12px;
+            padding: 8px 10px 10px 10px; /* 内側の余白を圧縮 */
             margin-bottom: 24px;
             
-            /* スナップのターゲットに指定。6試合が縦スクロールなしでピタッと収まる高さ */
             scroll-snap-align: start; 
-            scroll-margin-top: 12px; 
+            scroll-margin-top: 10px; 
             
-            height: calc(100vh - 120px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+            /* 画面下部で見切れないよう引き算を100pxに調整 */
+            height: calc(100vh - 100px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
             display: flex;
             flex-direction: column;
-            justify-content: space-between; /* 6試合を均等かつタイトに配置 */
+            justify-content: space-between; 
             
-            /* ポップな立体感を出すシャドウと太めの境界線 */
             border: 3px solid var(--primary-navy);
             box-shadow: 4px 4px 0px var(--accent-lime);
         }
         
         .section-box-title {
-            font-size: 1.1rem;
+            font-size: 1.0rem;
             font-weight: 900;
             color: var(--primary-navy);
-            padding-bottom: 4px;
+            padding-bottom: 2px;
+            margin-bottom: 4px;
+            border-bottom: 2px dashed var(--border-color);
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
         
         /* ==========================================================================
-           超コンパクト試合カード + YouTubeエリア（横並び）
+           極限圧縮 試合カード + YouTubeミニエリア
            ========================================================================== */
         .match-card {
             border: 2px solid var(--border-color);
-            border-radius: 8px;
+            border-radius: 6px;
             overflow: hidden;
             background: var(--card-bg);
             display: flex;
             flex-direction: column;
-            flex: 1; /* 1マスの高さを均等に引き伸ばす */
-            margin-bottom: 6px;
+            flex: 1; 
+            margin-bottom: 4px; /* カード間の隙間を詰め、縦を節約 */
         }
         .match-card:last-child {
             margin-bottom: 0;
         }
         
-        /* メタバーをよりコンパクトに */
+        /* メタバーの縦パディングを限界まで凝縮 */
         .match-meta-bar {
             background: var(--bg-color);
-            padding: 2px 8px;
+            padding: 1px 6px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             border-bottom: 1px solid var(--border-color);
+            line-height: 1.2;
         }
         
         .match-num {
@@ -174,60 +172,60 @@
             font-weight: 600;
         }
         
-        /* 対戦チームと動画エリアを横並び(Flex)にする */
+        /* 対戦エリアのパディングを極小に */
         .match-body {
-            padding: 4px 8px;
+            padding: 2px 6px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 8px;
+            gap: 6px;
             flex: 1;
         }
         
-        /* 左側：チーム情報エリア */
         .match-teams-space {
             flex: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            gap: 2px;
+            gap: 1px; /* チーム間の隙間を限界まで詰める */
         }
         
         .team-row {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            font-size: 0.85rem;
+            font-size: 0.8rem; /* 文字をわずかに縮小 */
             font-weight: 700;
+            line-height: 1.2;
         }
         
         .team-identity {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 4px;
         }
         
         .score-box {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 800;
             color: var(--accent-blue);
         }
         
-        /* 右側：★YouTube動画貼り付けスペース */
+        /* ★YouTube動画スペースのサイズを一回り縮小し、全体の縦幅への干渉を防ぐ */
         .match-video-space {
-            width: 75px;         /* 縦画面でも邪魔にならないコンパクトな横幅 */
-            height: 42px;        /* 16:9比率に近い高さに固定 */
+            width: 64px;         /* 横幅をコンパクトに */
+            height: 36px;        /* 16:9を維持しつつ高さを36pxに圧縮 */
             background-color: var(--video-bg);
-            border-radius: 4px;
+            border-radius: 3px;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
             border: 1px solid var(--border-color);
             position: relative;
+            flex-shrink: 0;     /* 縦圧縮に負けて潰れるのを防ぐ */
         }
         
-        /* 内側に入れるiframeやaタグ、imgがぴったり収まるように補正 */
         .match-video-space iframe,
         .match-video-space img,
         .match-video-space a {
@@ -237,15 +235,14 @@
             border: none;
         }
         
-        /* 動画未登録時のアイコンやテキスト用スタイル（任意） */
         .match-video-space::before {
             content: "▶";
-            font-size: 0.75rem;
-            color: var(--accent-red); /* YouTubeを意識したポップな赤 */
+            font-size: 0.65rem;
+            color: var(--accent-red);
         }
         
         /* ==========================================================================
-           Tab Navigation (Fixed Bottom)
+           Tab Navigation
            ========================================================================== */
         nav.tab-nav {
             position: fixed;
@@ -260,10 +257,10 @@
         
         .tab-item {
             flex: 1;
-            padding: 14px 10px;
+            padding: 12px 10px; /* タブも少しだけスマートに */
             text-align: center;
             color: rgba(255, 255, 255, 0.6);
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 800;
             text-decoration: none;
             transition: background 0.2s, color 0.2s;
