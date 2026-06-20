@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>World Cup 2026 Highlights</title>
+    <title>FIFA World Cup 2026 Schedule - DAZN Edition</title>
     <style>
-        /* --- デザインシステム & テーマカラー (WC2026インスパイア) --- */
+        /* --- デザインシステム & テーマカラー --- */
         :root {
-            --bg-color: #f7f9fc;
+            --bg-color: #f4f6f9;
             --card-bg: #ffffff;
-            --primary-navy: #161a36; /* 大会ロゴの深みのある紺 */
-            --accent-green: #3cac3b; /* メキシコグリーン */
-            --accent-red: #e61d25;   /* アメリカレッド */
-            --trophy-gold: #e5b842;  /* トロフィーゴールド */
-            --text-main: #2b2d42;
-            --text-sub: #8d99ae;
+            --primary-navy: #111424; /* DAZNのダークトーンに近い深紺 */
+            --accent-dazn: #f8f9fa;  
+            --accent-active: #2a6df5; /* 明瞭なプライマリーブルー */
+            --trophy-gold: #f2a900;  
+            --text-main: #1a1a24;
+            --text-sub: #788293;
+            --border-color: #e9ecf0;
         }
 
         /* --- リセット & 基本設定 --- */
@@ -37,30 +38,27 @@
 
         /* --- ヘッダー --- */
         header {
-            background-color: var(--card-bg);
-            padding: 16px 16px 8px 16px;
-            padding-top: calc(16px + env(safe-area-inset-top)); /* iPhoneのノッチ対策 */
+            background-color: var(--primary-navy);
+            padding: 16px;
+            padding-top: calc(16px + env(safe-area-inset-top));
             text-align: center;
-            border-bottom: 2px solid #edf2f7;
             position: relative;
             z-index: 10;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         header h1 {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 800;
-            color: var(--primary-navy);
-            letter-spacing: 0.05em;
-        }
-        header h1 span {
-            color: var(--accent-red);
+            color: #ffffff;
+            letter-spacing: 0.03em;
         }
 
         /* --- スライドコンテナ --- */
         .slider-container {
             display: flex;
             width: 100%;
-            height: calc(100vh - 120px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+            height: calc(100vh - 84px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
             overflow-x: auto;
             scroll-snap-type: x mandatory;
             scroll-behavior: smooth;
@@ -71,7 +69,7 @@
             display: none;
         }
 
-        /* 各ステージのページ */
+        /* 各ページの基本構造 */
         .stage-page {
             flex: 0 0 100%;
             width: 100%;
@@ -81,378 +79,149 @@
             padding: 16px 16px 80px 16px;
         }
 
+        .stage-header {
+            margin-bottom: 16px;
+        }
+
         .stage-title {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             font-weight: 800;
-            margin-bottom: 4px;
             color: var(--primary-navy);
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
-        .stage-title::before {
-            content: '';
-            display: inline-block;
-            width: 6px;
-            height: 24px;
-            background: linear-gradient(var(--accent-green), var(--trophy-gold));
-            border-radius: 3px;
-        }
+
         .stage-subtitle {
             font-size: 0.8rem;
             color: var(--text-sub);
-            margin-bottom: 16px;
-            padding-left: 14px;
+            margin-top: 2px;
         }
 
-        /* --- グループステージ用のレイアウト --- */
-        .group-box {
-            background-color: var(--card-bg);
-            border-radius: 16px;
-            padding: 16px;
-            margin-bottom: 16px;
-            box-shadow: 0 4px 12px rgba(22, 26, 54, 0.04);
-            border: 1px solid #edf2f7;
-        }
-
-        .group-name {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--accent-green);
-            margin-bottom: 12px;
-            border-bottom: 2px dashed #edf2f7;
-            padding-bottom: 6px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .group-badge {
-            font-size: 0.75rem;
-            background: rgba(60, 172, 59, 0.1);
-            padding: 2px 8px;
-            border-radius: 4px;
-        }
-
-        /* --- 共通：動画リンクカード --- */
-        .match-card {
+        /* --- グループ・日程セクション --- */
+        .section-box {
             background-color: var(--card-bg);
             border-radius: 12px;
-            overflow: hidden;
+            padding: 14px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            border: 1px solid var(--border-color);
+        }
+
+        .section-box-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--primary-navy);
             margin-bottom: 12px;
-            border: 1px solid #edf2f7;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            padding-bottom: 6px;
+            border-bottom: 2px solid var(--bg-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .tournament-stage .match-card {
-            border-left: 4px solid var(--trophy-gold);
+        .live-badge {
+            font-size: 0.7rem;
+            background-color: #ff0033;
+            color: #ffffff;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 700;
         }
 
-        .match-info {
+        /* --- 試合カード (動画リンク一体型) --- */
+        .match-card {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 10px;
+            background: #ffffff;
+        }
+
+        .match-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .match-meta-bar {
+            background: #fafbfc;
+            padding: 8px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.75rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .match-time {
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .match-venue {
+            color: var(--text-sub);
+        }
+
+        .match-body {
             padding: 12px;
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            background: #fafbfc;
+            align-items: center;
         }
 
-        .teams {
+        .team-rows {
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 8px;
             flex: 1;
         }
 
-        .team {
+        .team-row {
             display: flex;
             align-items: center;
-            gap: 8px;
+            justify-content: space-between;
             font-size: 0.9rem;
             font-weight: 600;
         }
 
-        .flag-emoji {
-            font-size: 1.2rem;
-            width: 24px;
+        .team-identity {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .flag {
+            font-size: 1.1rem;
+            width: 22px;
             text-align: center;
         }
 
-        .match-meta {
-            text-align: right;
-            margin-left: auto;
+        .score-box {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-main);
             padding-right: 4px;
         }
-        .match-date {
-            font-size: 0.75rem;
-            color: var(--text-sub);
-            font-weight: 600;
-        }
-        .score {
-            font-weight: 700;
-            font-size: 0.85rem;
-            color: var(--primary-navy);
-            margin-top: 2px;
-        }
 
-        /* YouTube サムネイル枠 */
-        .video-link {
+        /* YouTubeハイライトプレビューエリア */
+        .video-trigger {
             display: block;
             position: relative;
             width: 100%;
             aspect-ratio: 16 / 9;
-            background-color: #000;
+            background-color: #000000;
+            border-top: 1px solid var(--border-color);
         }
 
-        .thumbnail {
+        .video-thumb {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.9;
+            opacity: 0.85;
             transition: opacity 0.2s;
         }
 
-        .video-link:active .thumbnail {
-            opacity: 0.7;
+        .video-trigger:active .video-thumb {
+            opacity: 0.65;
         }
 
-        .play-btn {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 44px;
-            height: 44px;
-            background-color: var(--accent-red);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 12px rgba(230, 29, 37, 0.4);
-        }
-
-        .play-btn::after {
-            content: '';
-            display: block;
-            width: 0;
-            height: 0;
-            border-style: solid;
-            border-width: 7px 0 7px 12px;
-            border-color: transparent transparent transparent #ffffff;
-            margin-left: 3px;
-        }
-
-        .dazn-badge {
-            position: absolute;
-            bottom: 8px;
-            right: 8px;
-            background-color: #000;
-            color: #fff;
-            font-size: 0.6rem;
-            font-weight: 900;
-            padding: 2px 6px;
-            border-radius: 4px;
-            letter-spacing: 0.05em;
-        }
-
-        /* --- 下部固定タブナビゲーション --- */
-        nav.tab-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: var(--primary-navy);
-            display: flex;
-            overflow-x: auto;
-            white-space: nowrap;
-            padding-bottom: env(safe-area-inset-bottom);
-            z-index: 100;
-            box-shadow: 0 -4px 16px rgba(0,0,0,0.1);
-        }
-
-        nav.tab-nav::-webkit-scrollbar {
-            display: none;
-        }
-
-        .tab-item {
-            flex: 1;
-            min-width: 75px;
-            padding: 14px 6px;
-            text-align: center;
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-decoration: none;
-            transition: all 0.2s;
-        }
-
-        .tab-item.active {
-            color: #ffffff;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-top: 3px solid var(--trophy-gold);
-            padding-top: 11px;
-        }
-
-        /* --- トーナメントの視覚構造化 --- */
-        .tournament-match-wrap {
-            margin-bottom: 20px;
-        }
-        .match-label {
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: var(--primary-navy);
-            margin-bottom: 6px;
-            background: rgba(229, 184, 66, 0.1);
-            display: inline-block;
-            padding: 2px 8px;
-            border-radius: 4px;
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <h1>FIFA WORLD CUP 2026 <span>HIGHLIGHTS</span></h1>
-    </header>
-
-    <div class="slider-container" id="mainSlider">
-
-        <section class="stage-page" id="page-group">
-            <h2 class="stage-title">グループステージ</h2>
-            <p class="stage-subtitle">大会期間: 6月11日〜6月27日</p>
-            
-            <div class="group-box" style="border-color: var(--trophy-gold); background: #fffdf9;">
-                <div class="group-name" style="color: var(--primary-navy);">
-                    <span>GROUP F</span>
-                    <span class="group-badge" style="background: rgba(229, 184, 66, 0.2);">注目</span>
-                </div>
-                
-                <div class="match-card">
-                    <div class="match-info">
-                        <div class="teams">
-                            <div class="team"><span class="flag-emoji">🇳🇱</span><span class="team-name">オランダ</span></div>
-                            <div class="team"><span class="flag-emoji">🇯🇵</span><span class="team-name">日本</span></div>
-                        </div>
-                        <div class="match-meta">
-                            <div class="match-date">6/15 05:00</div>
-                            <div class="score">試合終了</div>
-                        </div>
-                    </div>
-                    <a href="https://www.youtube.com/watch?v=VIDEO_ID_F1" target="_blank" class="video-link">
-                        <img src="https://img.youtube.com/vi/VIDEO_ID_F1/0.jpg" alt="Highlight" class="thumbnail">
-                        <div class="play-btn"></div>
-                        <div class="dazn-badge">DAZN</div>
-                    </a>
-                </div>
-
-                <div class="match-card">
-                    <div class="match-info">
-                        <div class="teams">
-                            <div class="team"><span class="flag-emoji">🇹🇳</span><span class="team-name">チュニジア</span></div>
-                            <div class="team"><span class="flag-emoji">🇯🇵</span><span class="team-name">日本</span></div>
-                        </div>
-                        <div class="match-meta">
-                            <div class="match-date">6/21 13:00</div>
-                            <div class="score">試合前</div>
-                        </div>
-                    </div>
-                    <a href="https://www.youtube.com/watch?v=VIDEO_ID_F2" target="_blank" class="video-link">
-                        <img src="https://img.youtube.com/vi/VIDEO_ID_F2/0.jpg" alt="Highlight" class="thumbnail">
-                        <div class="play-btn"></div>
-                        <div class="dazn-badge">DAZN</div>
-                    </a>
-                </div>
-
-                <div class="match-card">
-                    <div class="match-info">
-                        <div class="teams">
-                            <div class="team"><span class="flag-emoji">🇸🇪</span><span class="team-name">スウェーデン</span></div>
-                            <div class="team"><span class="flag-emoji">🇯🇵</span><span class="team-name">日本</span></div>
-                        </div>
-                        <div class="match-meta">
-                            <div class="match-date">6/26 08:00</div>
-                            <div class="score">試合前</div>
-                        </div>
-                    </div>
-                    <a href="https://www.youtube.com/watch?v=VIDEO_ID_F3" target="_blank" class="video-link">
-                        <img src="https://img.youtube.com/vi/VIDEO_ID_F3/0.jpg" alt="Highlight" class="thumbnail">
-                        <div class="play-btn"></div>
-                        <div class="dazn-badge">DAZN</div>
-                    </a>
-                </div>
-            </div>
-
-            <div class="group-box">
-                <div class="group-name">GROUP A</div>
-                <div class="match-card">
-                    <div class="match-info">
-                        <div class="teams">
-                            <div class="team"><span class="flag-emoji">🇲🇽</span><span class="team-name">メキシコ</span></div>
-                            <div class="team"><span class="flag-emoji">🇰🇷</span><span class="team-name">韓国</span></div>
-                        </div>
-                        <div class="match-meta"><div class="match-date">6/19 10:00</div><div class="score">試合終了</div></div>
-                    </div>
-                    <a href="#" class="video-link"><div class="play-btn"></div><div class="dazn-badge">DAZN</div></a>
-                </div>
-            </div>
-
-            <div class="group-box">
-                <div class="group-name">GROUP D</div>
-                <div class="match-card">
-                    <div class="match-info">
-                        <div class="teams">
-                            <div class="team"><span class="flag-emoji">🇺🇸</span><span class="team-name">アメリカ</span></div>
-                            <div class="team"><span class="flag-emoji">🇦🇺</span><span class="team-name">オーストラリア</span></div>
-                        </div>
-                        <div class="match-meta"><div class="match-date">6/20 04:00</div><div class="score">試合終了</div></div>
-                    </div>
-                    <a href="#" class="video-link"><div class="play-btn"></div><div class="dazn-badge">DAZN</div></a>
-                </div>
-            </div>
-
-            </section>
-
-        <section class="stage-page tournament-stage" id="page-b32">
-            <h2 class="stage-title">ラウンド・オブ・32</h2>
-            <p class="stage-subtitle">期間: 6月28日〜7月3日</p>
-            
-            <div class="tournament-match-wrap">
-                <div class="match-label">7月3日(金) 04:00 | 試合会場: マイアミ</div>
-                <div class="match-card">
-                    <div class="match-info"><div class="teams"><div class="team"><span class="flag-emoji">🏆</span> H組 1位</div><div class="team"><span class="flag-emoji">🏆</span> J組 2位</div></div></div>
-                    <a href="#" class="video-link"><div class="play-btn"></div></a>
-                </div>
-            </div>
-
-            <div class="tournament-match-wrap">
-                <div class="match-label">7月3日(金) 12:00 | 試合会場: ダラス</div>
-                <div class="match-card">
-                    <div class="match-info"><div class="teams"><div class="team"><span class="flag-emoji">🏆</span> D組 2位</div><div class="team"><span class="flag-emoji">🏆</span> G組 2位</div></div></div>
-                    <a href="#" class="video-link"><div class="play-btn"></div></a>
-                </div>
-            </div>
-        </section>
-
-        <section class="stage-page tournament-stage" id="page-b16">
-            <h2 class="stage-title">ラウンド・オブ ...16</h2>
-            <p class="stage-subtitle">期間: 7月4日〜7月7日</p>
-            <div class="tournament-match-wrap">
-                <div class="match-label">マッチカードサンプル</div>
-                <div class="match-card">
-                    <div class="match-info"><div class="teams"><div class="team">ラウンド32の勝者</div><div class="team">ラウンド32の勝者</div></div></div>
-                    <a href="#" class="video-link"><div class="play-btn"></div></a>
-                </div>
-            </div>
-        </section>
-
-        <section class="stage-page tournament-stage" id="page-b8">
-            <h2 class="stage-title">準々決勝 (ベスト 8)</h2>
-            <p class="stage-subtitle">期間: 7月9日〜7月11日</p>
-            <div class="tournament-match-wrap">
-                <div class="match-label">7月10日(金) | ロサンゼルス</div>
-                <div class="match-card">
-                    <div class="match-info"><div class="teams"><div class="team">未決定</div><div class="team">未決定</div></div></div>
-                    <a href="#" class="video-link"><div class="play-btn"></div></a>
-                </div>
-            </div>
-        </section>
-
-        <section class="stage-page tournament-stage" id="page-b4">
+        .play-icon
