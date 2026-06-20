@@ -6,29 +6,30 @@
     <title>FIFA World Cup 2026 Schedule - Complete 72 Matches</title>
     <style>
         /* ==========================================================================
-           FIFA 2026 Official Visual Palette (Ref: image_be972b.png)
+           FIFA 2026 Vivid & Pop Palette (Ref: image_be972b.png)
            ========================================================================== */
         
         :root {
-            /* ベースカラー：下半分の洗練されたディープシャドウ */
-            --bg-color: #0f111e;         
-            --card-bg: #1a1e36;          
-            --primary-navy: #0b0d16;     
-            --border-color: #252b4e;     
+            /* 全体を明るい白ベースに変更 */
+            --bg-color: #f8f9fa;         /* メイン背景（クリーンな薄グレー） */
+            --card-bg: #ffffff;          /* カード背景（純白） */
+            --primary-navy: #0b0d16;     /* ヘッダー等に使う引き締め用の紺 */
+            --border-color: #e9ecef;     /* 軽快な境界線 */
         
-            /* アクセントカラー：上部のサイケデリックなマルチカラーから抽出 */
-            --accent-lime: #b9eb0b;      /* 中央「26」の強烈なネオン黄緑 */
+            /* 画像から抽出したポップでビビッドなアクセント */
+            --accent-lime: #b9eb0b;      /* 中央「26」のネオンライムグリーン */
             --accent-emerald: #08ca5d;   /* トロフィー台座のエメラルドグリーン */
-            --accent-red: #eb2504;       /* 背景を彩る情熱的なビビッドレッド */
-            --accent-blue: #8db6fb;      /* 外縁を包む爽快なスカイブルー */
-        
+            --accent-red: #eb2504;       /* 情熱的なビビッドレッド */
+            --accent-blue: #3757fb;      /* 背景の鮮やかなブルー */
+            
             /* テキストカラー */
-            --text-main: #ffffff;        
-            --text-sub: #a1a7c4;         
+            --text-main: #212529;        
+            --text-sub: #6c757d;         
+            --video-bg: #f1f3f5;         /* YouTubeエリアのプレースホルダー背景 */
         }
         
         /* ==========================================================================
-           Reset & Base Layout
+           Reset & Base Layout (縦方向のスナップを有効化)
            ========================================================================== */
         * {
             box-sizing: border-box;
@@ -38,7 +39,7 @@
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-main);
             overflow: hidden;
@@ -52,12 +53,12 @@
            ========================================================================== */
         header {
             background-color: var(--primary-navy);
-            padding: 16px;
-            padding-top: calc(16px + env(safe-area-inset-top));
+            padding: 12px;
+            padding-top: calc(12px + env(safe-area-inset-top));
             text-align: center;
             z-index: 10;
             position: relative;
-            border-bottom: 2px solid var(--accent-lime); /* ライムグリーンをアクセントに */
+            border-bottom: 3px solid var(--accent-red); /* ビビッドレッドのアクセント */
         }
         
         header h1 {
@@ -68,16 +69,16 @@
         }
         
         header h1 span {
-            color: var(--accent-lime);
+            color: var(--accent-lime); /* ライムグリーンをアクセントに */
         }
         
         /* ==========================================================================
-           Slider Layout (Horizontal Scroll)
+           Slider Layout (横スクロール)
            ========================================================================== */
         .slider-container {
             display: flex;
             width: 100%;
-            height: calc(100vh - 86px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+            height: calc(100vh - 78px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
             overflow-x: auto;
             scroll-snap-type: x mandatory;
             scroll-behavior: smooth;
@@ -87,115 +88,160 @@
             display: none;
         }
         
+        /* ==========================================================================
+           Stage Page & Section Box (★縦方向スクロールスナップのコア設定)
+           ========================================================================== */
         .stage-page {
             flex: 0 0 100%;
             width: 100%;
             height: 100%;
             scroll-snap-align: start;
             overflow-y: auto;
-            padding: 16px 16px 100px 16px;
+            
+            /* 縦スワイプ時に各グループ位置で固定する設定 */
+            scroll-snap-type: y mandatory; 
+            scroll-behavior: smooth;
+            padding: 12px 12px 100px 12px;
         }
         
-        /* ステージごとの縦ラインアクセント */
-        .stage-header {
-            margin-bottom: 18px;
-            border-left: 4px solid var(--accent-emerald);
-            padding-left: 10px;
-        }
-        
-        .stage-title {
-            font-size: 1.3rem;
-            font-weight: 800;
-            color: #ffffff;
-        }
-        
-        /* ==========================================================================
-           Cards & Match Content
-           ========================================================================== */
-        /* グループ/ラウンドを括るボックス */
+        /* 各グループのボックスを1画面に収め、スナップの固定位置にする */
         .section-box {
             background-color: var(--card-bg);
-            border-radius: 14px;
-            padding: 16px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 12px;
+            margin-bottom: 24px;
+            
+            /* スナップのターゲットに指定。6試合が縦スクロールなしでピタッと収まる高さ */
+            scroll-snap-align: start; 
+            scroll-margin-top: 12px; 
+            
+            height: calc(100vh - 120px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* 6試合を均等かつタイトに配置 */
+            
+            /* ポップな立体感を出すシャドウと太めの境界線 */
+            border: 3px solid var(--primary-navy);
+            box-shadow: 4px 4px 0px var(--accent-lime);
         }
         
         .section-box-title {
-            font-size: 1.05rem;
-            font-weight: 800;
-            color: var(--accent-lime);
-            margin-bottom: 14px;
-            padding-bottom: 6px;
-            border-bottom: 1px solid var(--border-color);
+            font-size: 1.1rem;
+            font-weight: 900;
+            color: var(--primary-navy);
+            padding-bottom: 4px;
+            border-bottom: 2px dashed var(--border-color);
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
         
-        /* 各試合のカード */
+        /* ==========================================================================
+           超コンパクト試合カード + YouTubeエリア（横並び）
+           ========================================================================== */
         .match-card {
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
             overflow: hidden;
-            margin-bottom: 12px;
-            background: rgba(255, 255, 255, 0.02);
+            background: var(--card-bg);
+            display: flex;
+            flex-direction: column;
+            flex: 1; /* 1マスの高さを均等に引き伸ばす */
+            margin-bottom: 6px;
         }
-        
         .match-card:last-child {
             margin-bottom: 0;
         }
         
-        /* カード上部のミニバー */
+        /* メタバーをよりコンパクトに */
         .match-meta-bar {
-            background: rgba(0, 0, 0, 0.2);
-            padding: 8px 12px;
+            background: var(--bg-color);
+            padding: 2px 8px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             border-bottom: 1px solid var(--border-color);
         }
         
         .match-num {
-            font-weight: 700;
+            font-weight: 800;
             color: var(--accent-blue);
         }
         
         .match-time {
-            color: #ffffff;
+            color: var(--text-sub);
             font-weight: 600;
         }
         
-        /* 対戦カード本体 */
+        /* 対戦チームと動画エリアを横並び(Flex)にする */
         .match-body {
-            padding: 14px;
+            padding: 4px 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            flex: 1;
+        }
+        
+        /* 左側：チーム情報エリア */
+        .match-teams-space {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 2px;
         }
         
         .team-row {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            font-size: 0.95rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-        
-        .team-row:last-child {
-            margin-bottom: 0;
+            font-size: 0.85rem;
+            font-weight: 700;
         }
         
         .team-identity {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 6px;
         }
         
         .score-box {
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--accent-lime);
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: var(--accent-blue);
+        }
+        
+        /* 右側：★YouTube動画貼り付けスペース */
+        .match-video-space {
+            width: 75px;         /* 縦画面でも邪魔にならないコンパクトな横幅 */
+            height: 42px;        /* 16:9比率に近い高さに固定 */
+            background-color: var(--video-bg);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            position: relative;
+        }
+        
+        /* 内側に入れるiframeやaタグ、imgがぴったり収まるように補正 */
+        .match-video-space iframe,
+        .match-video-space img,
+        .match-video-space a {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: none;
+        }
+        
+        /* 動画未登録時のアイコンやテキスト用スタイル（任意） */
+        .match-video-space::before {
+            content: "▶";
+            font-size: 0.75rem;
+            color: var(--accent-red); /* YouTubeを意識したポップな赤 */
         }
         
         /* ==========================================================================
@@ -210,24 +256,22 @@
             display: flex;
             padding-bottom: env(safe-area-inset-bottom);
             z-index: 100;
-            border-top: 1px solid var(--border-color);
         }
         
         .tab-item {
             flex: 1;
-            padding: 16px 10px;
+            padding: 14px 10px;
             text-align: center;
-            color: var(--text-sub);
+            color: rgba(255, 255, 255, 0.6);
             font-size: 0.8rem;
-            font-weight: 700;
+            font-weight: 800;
             text-decoration: none;
             transition: background 0.2s, color 0.2s;
         }
         
-        /* アクティブなタブには下線とライム色を付与 */
         .tab-item.active {
             color: var(--accent-lime);
-            background-color: rgba(255, 255, 255, 0.01);
+            background-color: rgba(255, 255, 255, 0.05);
             box-shadow: inset 0 -4px 0 var(--accent-lime);
         }
     </style>
