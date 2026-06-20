@@ -224,4 +224,327 @@
             opacity: 0.65;
         }
 
-        .play-icon
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background-color: rgba(26, 26, 36, 0.85);
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .play-icon::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 6px 0 6px 10px;
+            border-color: transparent transparent transparent #ffffff;
+            margin-left: 2px;
+        }
+
+        .dazn-stream-tag {
+            position: absolute;
+            bottom: 6px;
+            right: 6px;
+            background: #000000;
+            color: #ffffff;
+            font-size: 0.6rem;
+            font-weight: 800;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+
+        /* --- 固定タブナビゲーション --- */
+        nav.tab-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--primary-navy);
+            display: flex;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding-bottom: env(safe-area-inset-bottom);
+            z-index: 100;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        nav.tab-nav::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tab-item {
+            flex: 1;
+            min-width: 72px;
+            padding: 14px 4px;
+            text-align: center;
+            color: #8a92a6;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .tab-item.active {
+            color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.05);
+            box-shadow: inset 0 -3px 0 #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>FIFA WORLD CUP 2026 日程</h1>
+    </header>
+
+    <div class="slider-container" id="mainSlider">
+
+        <section class="stage-page" id="page-group">
+            <div class="stage-header">
+                <h2 class="stage-title">グループステージ</h2>
+                <p class="stage-subtitle">大会期間: 2026年6月12日(金) 〜 6月28日(日)</p>
+            </div>
+            
+            <div class="section-box" style="border-top: 3px solid var(--trophy-gold);">
+                <div class="section-box-title">
+                    <span>グループF (日本代表)</span>
+                </div>
+                
+                <div class="match-card">
+                    <div class="match-meta-bar">
+                        <span class="match-time">6月15日(月) 05:00</span>
+                        <span class="match-venue">ダラス・スタジアム</span>
+                    </div>
+                    <div class="match-body">
+                        <div class="team-rows">
+                            <div class="team-row"><div class="team-identity"><span class="flag">🇯🇵</span>日本</div><div class="score-box">2</div></div>
+                            <div class="team-row"><div class="team-identity"><span class="flag">🇳🇱</span>オランダ</div><div class="score-box">2</div></div>
+                        </div>
+                    </div>
+                    <a href="https://www.youtube.com/watch?v=DAZN_W_ID1" target="_blank" class="video-trigger">
+                        <img src="https://img.youtube.com/vi/DAZN_W_ID1/0.jpg" alt="Highlight" class="video-thumb">
+                        <div class="play-icon"></div>
+                        <div class="dazn-stream-tag">DAZN 全編配信</div>
+                    </a>
+                </div>
+
+                <div class="match-card">
+                    <div class="match-meta-bar">
+                        <span class="match-time">6月21日(日) 13:00</span>
+                        <span class="match-venue">モンテレイ・スタジアム</span>
+                    </div>
+                    <div class="match-body">
+                        <div class="team-rows">
+                            <div class="team-row"><div class="team-identity"><span class="flag">🇯🇵</span>日本</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity"><span class="flag">🇹🇳</span>チュニジア</div><div class="score-box">-</div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="match-card">
+                    <div class="match-meta-bar">
+                        <span class="match-time">6月26日(金) 08:00</span>
+                        <span class="match-venue">ダラス・スタジアム</span>
+                    </div>
+                    <div class="match-body">
+                        <div class="team-rows">
+                            <div class="team-row"><div class="team-identity"><span class="flag">🇯🇵</span>日本</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity"><span class="flag">🇸🇪</span>スウェーデン</div><div class="score-box">-</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-box">
+                <div class="section-box-title">
+                    <span>グループステージ 注目カード</span>
+                </div>
+
+                <div class="match-card">
+                    <div class="match-meta-bar">
+                        <span class="match-time">6月19日(金) 07:00</span>
+                        <span class="match-venue">バンクーバー</span>
+                    </div>
+                    <div class="match-body">
+                        <div class="team-rows">
+                            <div class="team-row"><div class="team-identity"><span class="flag">🇨🇦</span>カナダ</div><div class="score-box">6</div></div>
+                            <div class="team-row"><div class="team-identity"><span class="flag">🇶🇦</span>カタール</div><div class="score-box">0</div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="match-card">
+                    <div class="match-meta-bar">
+                        <span class="match-time">6月19日(金) 10:00</span>
+                        <span class="match-venue">グアダラハラ</span>
+                    </div>
+                    <div class="match-body">
+                        <div class="team-rows">
+                            <div class="team-row"><div class="team-identity"><span class="flag">🇲🇽</span>メキシコ</div><div class="score-box">1</div></div>
+                            <div class="team-row"><div class="team-identity"><span class="flag">🇰🇷</span>韓国</div><div class="score-box">0</div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="match-card">
+                    <div class="match-meta-bar">
+                        <span class="match-time">6月20日(土) 04:00</span>
+                        <span class="match-venue">シアトル</span>
+                    </div>
+                    <div class="match-body">
+                        <div class="team-rows">
+                            <div class="team-row"><div class="team-identity"><span class="flag">🇺🇸</span>アメリカ</div><div class="score-box">2</div></div>
+                            <div class="team-row"><div class="team-identity"><span class="flag">🇦🇺</span>オーストラリア</div><div class="score-box">0</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="stage-page" id="page-b32">
+            <div class="stage-header">
+                <h2 class="stage-title">ラウンド32</h2>
+                <p class="stage-subtitle">期間: 2026年6月29日(月) 〜 7月4日(土)</p>
+            </div>
+
+            <div class="section-box">
+                <div class="section-box-title">マッチスケジュール（日本時間）</div>
+                
+                <div class="match-card">
+                    <div class="match-meta-bar"><span class="match-time">6月29日(月) 04:00</span><span class="match-venue">ロサンゼルス</span></div>
+                    <div class="match-body"><div class="team-rows"><div class="team-row">A組2位 vs B組2位</div></div></div>
+                </div>
+
+                <div class="match-card">
+                    <div class="match-meta-bar"><span class="match-time">6月30日(火) 02:00</span><span class="match-venue">ヒューストン</span></div>
+                    <div class="match-body"><div class="team-rows"><div class="team-row">C組1位 vs F組2位</div></div></div>
+                </div>
+
+                <div class="match-card">
+                    <div class="match-meta-bar"><span class="match-time">6月30日(火) 10:00</span><span class="match-venue">モンテレイ</span></div>
+                    <div class="match-body"><div class="team-rows"><div class="team-row">F組1位 vs C組2位</div></div></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="stage-page" id="page-b16">
+            <div class="stage-header">
+                <h2 class="stage-title">ラウンド16</h2>
+                <p class="stage-subtitle">期間: 2026年7月5日(日) 〜 7月8日(水)</p>
+            </div>
+            <div class="section-box">
+                <div class="match-card">
+                    <div class="match-meta-bar"><span class="match-time">7月6日(月) 09:00</span><span class="match-venue">メキシコシティー</span></div>
+                    <div class="match-body"><div class="team-rows"><div class="team-row">ラウンド32の勝者 vs 勝者</div></div></div>
+                </div>
+                <div class="match-card">
+                    <div class="match-meta-bar"><span class="match-time">7月7日(火) 04:00</span><span class="match-venue">ダラス</span></div>
+                    <div class="match-body"><div class="team-rows"><div class="team-row">ラウンド32の勝者 vs 勝者</div></div></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="stage-page" id="page-b8">
+            <div class="stage-header">
+                <h2 class="stage-title">準々決勝</h2>
+                <p class="stage-subtitle">期間: 2026年7月10日(金) 〜 7月13日(月)</p>
+            </div>
+            <div class="section-box">
+                <div class="match-card">
+                    <div class="match-meta-bar"><span class="match-time">7月10日(金) 05:00</span><span class="match-venue">ボストン</span></div>
+                    <div class="match-body"><div class="team-rows"><div class="team-row">ベスト8激突</div></div></div>
+                </div>
+                <div class="match-card">
+                    <div class="match-meta-bar"><span class="match-time">7月11日(土) 04:00</span><span class="match-venue">ロサンゼルス</span></div>
+                    <div class="match-body"><div class="team-rows"><div class="team-row">ベスト8激突</div></div></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="stage-page" id="page-b4">
+            <div class="stage-header">
+                <h2 class="stage-title">準決勝</h2>
+                <p class="stage-subtitle">期間: 2026年7月15日(水) 〜 7月16日(木)</p>
+            </div>
+            <div class="section-box">
+                <div class="match-card">
+                    <div class="match-meta-bar"><span class="match-time">7月15日(水) 04:00</span><span class="match-venue">未定</span></div>
+                    <div class="match-body"><div class="team-rows"><div class="team-row">セミファイナル Match 1</div></div></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="stage-page" id="page-final">
+            <div class="stage-header">
+                <h2 class="stage-title">決勝 / 3位決定戦</h2>
+                <p class="stage-subtitle">クライマックス: 7月19日・7月20日</p>
+            </div>
+            <div class="section-box" style="border-left: 4px solid var(--trophy-gold);">
+                <div class="section-box-title">3位決定戦</div>
+                <div class="match-card">
+                    <div class="match-meta-bar"><span class="match-time">7月19日(日)</span><span class="match-venue">マイアミ / ハードロック・スタジアム</span></div>
+                    <div class="match-body"><div class="team-rows"><div class="team-row">準決勝の敗者 vs 準決勝の敗者</div></div></div>
+                </div>
+            </div>
+            <div class="section-box" style="border-left: 4px solid #ff0033;">
+                <div class="section-box-title">決勝戦 (FINAL)</div>
+                <div class="match-card">
+                    <div class="match-meta-bar"><span class="match-time">7月20日(月)</span><span class="match-venue">ニューヨーク／ニュージャージー・スタジアム</span></div>
+                    <div class="match-body"><div class="team-rows"><div class="team-row" style="font-size: 1.1rem; color: var(--primary-navy);">🏆 世界の頂点へ</div></div></div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <nav class="tab-nav">
+        <a href="#page-group" class="tab-item active" onclick="scrollToPage(0); return false;">グループ</a>
+        <a href="#page-b32" class="tab-item" onclick="scrollToPage(1); return false;">R32</a>
+        <a href="#page-b16" class="tab-item" onclick="scrollToPage(2); return false;">R16</a>
+        <a href="#page-b8" class="tab-item" onclick="scrollToPage(3); return false;">準々決勝</a>
+        <a href="#page-b4" class="tab-item" onclick="scrollToPage(4); return false;">準決勝</a>
+        <a href="#page-final" class="tab-item" onclick="scrollToPage(5); return false;">決勝</a>
+    </nav>
+
+    <script>
+        const slider = document.getElementById('mainSlider');
+        const tabs = document.querySelectorAll('.tab-item');
+
+        function scrollToPage(index) {
+            const pageWidth = slider.clientWidth;
+            slider.scrollTo({
+                left: pageWidth * index,
+                behavior: 'smooth'
+            });
+            updateTabActive(index);
+        }
+
+        function updateTabActive(activeIndex) {
+            tabs.forEach((tab, idx) => {
+                if (idx === activeIndex) {
+                    tab.classList.add('active');
+                    tab.parentElement.scrollTo({
+                        left: tab.offsetLeft - (window.innerWidth / 2) + (tab.clientWidth / 2),
+                        behavior: 'smooth'
+                    });
+                } else {
+                    tab.classList.remove('active');
+                }
+            });
+        }
+
+        slider.addEventListener('scroll', () => {
+            const index = Math.round(slider.scrollLeft / slider.clientWidth);
+            updateTabActive(index);
+        });
+    </script>
+</body>
+</html>
