@@ -21,6 +21,7 @@
             --accent-emerald: #08ca5d;   /* トロフィー台座のエメラルドグリーン */
             --accent-red: #eb2504;       /* 情熱的なビビッドレッド */
             --accent-blue: #3757fb;      /* 背景の鮮やかなブルー */
+            --trophy-gold: #f3a712;      /* 日本所属グループ用のゴールド境界線 */
             
             /* テキストカラー */
             --text-main: #212529;        
@@ -279,572 +280,766 @@
 <body>
 
     <header>
-        <h1>FIFA WORLD CUP 2026</h1>
+        <h1>FIFA WORLD CUP <span>2026</span></h1>
     </header>
 
     <div class="slider-container" id="mainSlider">
 
-        <!-- グループステージ全72試合 -->
         <section class="stage-page" id="page-group">
             <div class="stage-header">
                 <h2 class="stage-title">グループステージ (A〜L)</h2>
             </div>
             
-            <!-- Group A -->
             <div class="section-box">
                 <div class="section-box-title">Group A</div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 1</span><span class="match-time">6/11(木) 19:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇲🇽 メキシコ</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇿🇦 南アフリカ</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇲🇽 メキシコ</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇿🇦 南アフリカ</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 2</span><span class="match-time">6/12(金) 2:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇰🇷 韓国</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇨🇿 チェコ</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇰🇷 韓国</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇨🇿 チェコ</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 25</span><span class="match-time">6/18(木) 16:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇨🇿 チェコ</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇿🇦 南アフリカ</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇨🇿 チェコ</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇿🇦 南アフリカ</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 28</span><span class="match-time">6/19(金) 1:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇲🇽 メキシコ</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇰🇷 韓国</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇲🇽 メキシコ</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇰🇷 韓国</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 53</span><span class="match-time">6/25(木) 1:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇨🇿 チェコ</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇲🇽 メキシコ</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇨🇿 チェコ</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇲🇽 メキシコ</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 54</span><span class="match-time">6/25(木) 1:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇿🇦 南アフリカ</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇰🇷 韓国</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇿🇦 南アフリカ</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇰🇷 韓国</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
             </div>
 
-            <!-- Group B -->
             <div class="section-box">
                 <div class="section-box-title">Group B</div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 3</span><span class="match-time">6/12(金) 19:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇨🇦 カナダ</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇧🇦 ボスニア・H</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇨🇦 カナダ</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇧🇦 ボスニア・H</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 8</span><span class="match-time">6/13(土) 19:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇶🇦 カタール</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇨🇭 スイス</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇶🇦 カタール</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇨🇭 スイス</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 26</span><span class="match-time">6/18(木) 19:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇨🇭 スイス</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇧🇦 ボスニア・H</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇨🇭 スイス</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇧🇦 ボスニア・H</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 27</span><span class="match-time">6/18(木) 22:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇨🇦 カナダ</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇶🇦 カタール</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇨🇦 カナダ</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇶🇦 カタール</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 51</span><span class="match-time">6/24(水) 19:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇨🇭 スイス</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇨🇦 カナダ</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇨🇭 スイス</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇨🇦 カナダ</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 52</span><span class="match-time">6/24(水) 19:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇧🇦 ボスニア・H</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇶🇦 カタール</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇧🇦 ボスニア・H</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇶🇦 カタール</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
             </div>
 
-            <!-- Group C -->
             <div class="section-box">
                 <div class="section-box-title">Group C</div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 5</span><span class="match-time">6/14(日) 1:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇭🇹 ハイチ</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🏴󠁧󠁢󠁳󠁣󠁴󠁿 スコットランド</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇭🇹 ハイチ</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🏴󠁧󠁢󠁳󠁣󠁴󠁿 スコットランド</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 7</span><span class="match-time">6/13(土) 22:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇧🇷 ブラジル</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇲🇦 モロッコ</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇧🇷 ブラジル</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇲🇦 モロッコ</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 29</span><span class="match-time">6/20(土) 0:30</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇧🇷 ブラジル</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇭🇹 ハイチ</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇧🇷 ブラジル</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇭🇹 ハイチ</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 30</span><span class="match-time">6/19(金) 22:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🏴󠁧󠁢󠁳󠁣󠁴󠁿 スコットランド</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇲🇦 モロッコ</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🏴󠁧󠁢󠁳󠁣󠁴󠁿 スコットランド</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇲🇦 モロッコ</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 49</span><span class="match-time">6/24(水) 22:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🏴󠁧󠁢󠁳󠁣󠁴󠁿 スコットランド</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇧🇷 ブラジル</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🏴󠁧󠁢󠁳󠁣󠁴󠁿 スコットランド</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇧🇷 ブラジル</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 50</span><span class="match-time">6/24(水) 22:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇲🇦 モロッコ</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇭🇹 ハイチ</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇲🇦 モロッコ</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇭🇹 ハイチ</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
             </div>
 
-            <!-- Group D -->
             <div class="section-box">
                 <div class="section-box-title">Group D</div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 4</span><span class="match-time">6/13(土) 1:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇺🇸 アメリカ</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇵🇾 パラグアイ</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇺🇸 アメリカ</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇵🇾 パラグアイ</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 6</span><span class="match-time">6/14(日) 4:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇦🇺 オーストラリア</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇹🇷 トルコ</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇦🇺 オーストラリア</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇹🇷 トルコ</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 31</span><span class="match-time">6/20(土) 3:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇺🇸 アメリカ</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇦🇺 オーストラリア</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇺🇸 アメリカ</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇦🇺 オーストラリア</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 32</span><span class="match-time">6/19(金) 19:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇹🇷 トルコ</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇵🇾 パラグアイ</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇹🇷 トルコ</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇵🇾 パラグアイ</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 59</span><span class="match-time">6/26(金) 2:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇹🇷 トルコ</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇺🇸 アメリカ</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇹🇷 トルコ</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇺🇸 アメリカ</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 60</span><span class="match-time">6/26(金) 2:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇵🇾 パラグアイ</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇦🇺 オーストラリア</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇵🇾 パラグアイ</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇦🇺 オーストラリア</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
             </div>
 
-            <!-- Group E -->
             <div class="section-box">
                 <div class="section-box-title">Group E</div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 9</span><span class="match-time">6/14(日) 23:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇨🇮 コートジボワール</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇪🇨 エクアドル</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇨🇮 コートジボワール</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇪🇨 エクアドル</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 10</span><span class="match-time">6/14(日) 17:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇩🇪 ドイツ</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇨🇼 キュラソー</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇩🇪 ドイツ</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇨🇼 キュラソー</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 33</span><span class="match-time">6/20(土) 20:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇩🇪 ドイツ</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇨🇮 コートジボワール</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇩🇪 ドイツ</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇨🇮 コートジボワール</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 34</span><span class="match-time">6/21(日) 0:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇪🇨 エクアドル</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇨🇼 キュラソー</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇪🇨 エクアドル</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇨🇼 キュラソー</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 55</span><span class="match-time">6/25(木) 20:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇨🇼 キュラソー</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇨🇮 コートジボワール</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇨🇼 キュラソー</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇨🇮 コートジボワール</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 56</span><span class="match-time">6/25(木) 20:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇪🇨 エクアドル</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇩🇪 ドイツ</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇪🇨 エクアドル</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇩🇪 ドイツ</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
             </div>
 
-            <!-- Group F -->
             <div class="section-box" style="border-left: 4px solid var(--trophy-gold);">
                 <div class="section-box-title">Group F (日本所属)</div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 11</span><span class="match-time">6/14(日) 20:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇳🇱 オランダ</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇯🇵 日本</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇳🇱 オランダ</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇯🇵 日本</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 12</span><span class="match-time">6/15(月) 2:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇸🇪 スウェーデン</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇹🇳 チュニジア</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇸🇪 スウェーデン</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇹🇳 チュニジア</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 35</span><span class="match-time">6/20(土) 17:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇳🇱 オランダ</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇸🇪 スウェーデン</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇳🇱 オランダ</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇸🇪 スウェーデン</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 36</span><span class="match-time">6/21(日) 4:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇹🇳 チュニジア</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇯🇵 日本</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇹🇳 チュニジア</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇯🇵 日本</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 57</span><span class="match-time">6/25(木) 23:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇯🇵 日本</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇸🇪 スウェーデン</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇯🇵 日本</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇸🇪 スウェーデン</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 58</span><span class="match-time">6/25(木) 23:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇹🇳 チュニジア</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇳🇱 オランダ</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇹🇳 チュニジア</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇳🇱 オランダ</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
             </div>
 
-            <!-- Group G -->
             <div class="section-box">
                 <div class="section-box-title">Group G</div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 16</span><span class="match-time">6/15(月) 19:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇧🇪 ベルギー</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇪🇬 エジプト</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇧🇪 ベルギー</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇪🇬 エジプト</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 40</span><span class="match-time">6/22(月) 1:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇳🇿 ニュージーランド</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇪🇬 エジプト</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇳🇿 ニュージーランド</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇪🇬 エジプト</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 63</span><span class="match-time">6/27(土) 3:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇪🇬 エジプト</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇮🇷 イラン</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇪🇬 エジプト</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇮🇷 イラン</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 64</span><span class="match-time">6/27(土) 3:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇳🇿 ニュージーランド</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇧🇪 ベルギー</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇳🇿 ニュージーランド</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇧🇪 ベルギー</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
-                <!-- ※他スケジュール順に2試合(合計6試合) -->
             </div>
 
-            <!-- Group H -->
             <div class="section-box">
                 <div class="section-box-title">Group H</div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 13</span><span class="match-time">6/15(月) 22:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇸🇦 サウジアラビア</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇺🇾 ウルグアイ</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇸🇦 サウジアラビア</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇺🇾 ウルグアイ</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 14</span><span class="match-time">6/15(月) 16:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇪🇸 スペイン</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇨🇻 カーボベルデ</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇪🇸 スペイン</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇨🇻 カーボベルデ</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 37</span><span class="match-time">6/21(日) 22:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇺🇾 ウルグアイ</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇨🇻 カーボベルデ</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇺🇾 ウルグアイ</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇨🇻 カーボベルデ</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 38</span><span class="match-time">6/21(日) 16:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇪🇸 スペイン</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇸🇦 サウジアラビア</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇪🇸 スペイン</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇸🇦 サウジアラビア</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 65</span><span class="match-time">6/27(土) 0:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇨🇻 カーボベルデ</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇸🇦 サウジアラビア</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇨🇻 カーボベルデ</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇸🇦 サウジアラビア</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 66</span><span class="match-time">6/27(土) 0:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇺🇾 ウルグアイ</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇪🇸 スペイン</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇺🇾 ウルグアイ</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇪🇸 スペイン</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
             </div>
 
-            <!-- Group I -->
             <div class="section-box">
                 <div class="section-box-title">Group I</div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 17</span><span class="match-time">6/16(火) 19:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇫🇷 フランス</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇸🇳 セネガル</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇫🇷 フランス</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇸🇳 セネガル</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 18</span><span class="match-time">6/16(火) 22:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇮🇶 イラク</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇳🇴 ノルウェー</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇮🇶 イラク</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇳🇴 ノルウェー</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 41</span><span class="match-time">6/23(火) 0:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇳🇴 ノルウェー</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇸🇳 セネガル</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇳🇴 ノルウェー</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇸🇳 セネガル</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 42</span><span class="match-time">6/22(月) 20:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇫🇷 フランス</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇮🇶 イラク</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇫🇷 フランス</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇮🇶 イラク</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 61</span><span class="match-time">6/26(金) 19:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇳🇴 ノルウェー</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇫🇷 フランス</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇳🇴 ノルウェー</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇫🇷 フランス</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 62</span><span class="match-time">6/26(金) 19:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇸🇳 セネガル</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇮🇶 イラク</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇸🇳 セネガル</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇮🇶 イラク</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
             </div>
 
-            <!-- Group J -->
             <div class="section-box">
                 <div class="section-box-title">Group J</div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 19</span><span class="match-time">6/17(水) 1:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇦🇷 アルゼンチン</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇩🇿 アルジェリア</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇦🇷 アルゼンチン</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇩🇿 アルジェリア</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 20</span><span class="match-time">6/17(水) 4:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇦🇹 オーストリア</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇯🇴 ヨルダン</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇦🇹 オーストリア</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇯🇴 ヨルダン</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 43</span><span class="match-time">6/22(月) 17:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇦🇷 アルゼンチン</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇦🇹 オーストリア</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇦🇷 アルゼンチン</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇦🇹 オーストリア</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 44</span><span class="match-time">6/23(火) 3:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇯🇴 ヨルダン</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇩🇿 アルジェリア</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇯🇴 ヨルダン</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇩🇿 アルジェリア</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 69</span><span class="match-time">6/28(日) 2:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇩🇿 アルジェリア</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇦🇹 オーストリア</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇩🇿 アルジェリア</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇦🇹 オーストリア</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 70</span><span class="match-time">6/28(日) 2:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇯🇴 ヨルダン</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇦🇷 アルゼンチン</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇯🇴 ヨルダン</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇦🇷 アルゼンチン</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
             </div>
 
-            <!-- Group K -->
             <div class="section-box">
                 <div class="section-box-title">Group K</div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 21</span><span class="match-time">6/17(水) 23:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇬🇭 ガーナ</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇵🇦 パナマ</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇬🇭 ガーナ</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇵🇦 パナマ</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 23</span><span class="match-time">6/17(水) 17:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇵🇹 ポルトガル</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇨🇩 DRコンゴ</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇵🇹 ポルトガル</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇨🇩 DRコンゴ</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 45</span><span class="match-time">6/23(火) 20:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🏴󠁧󠁢󠁥󠁮󠁧󠁿 イングランド</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇬🇭 ガーナ</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🏴󠁧󠁢󠁥󠁮󠁧󠁿 イングランド</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇬🇭 ガーナ</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 47</span><span class="match-time">6/23(火) 17:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇵🇹 ポルトガル</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇺🇿 ウズベキスタン</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇵🇹 ポルトガル</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇺🇿 ウズベキスタン</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 71</span><span class="match-time">6/27(土) 23:30</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇨🇴 コロンビア</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇵🇹 ポルトガル</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇨🇴 コロンビア</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇵🇹 ポルトガル</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
-                <!-- ※他2試合 -->
             </div>
 
-            <!-- Group L -->
             <div class="section-box">
                 <div class="section-box-title">Group L</div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 22</span><span class="match-time">6/17(水) 20:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🏴󠁧󠁢󠁥󠁮󠁧󠁿 イングランド</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇭🇷 クロアチア</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🏴󠁧󠁢󠁥󠁮󠁧󠁿 イングランド</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇭🇷 クロアチア</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 24</span><span class="match-time">6/18(木) 2:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇺🇿 ウズベキスタン</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇨🇴 コロンビア</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇺🇿 ウズベキスタン</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇨🇴 コロンビア</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 46</span><span class="match-time">6/23(火) 23:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇵🇦 パナマ</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇭🇷 クロアチア</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇵🇦 パナマ</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇭🇷 クロアチア</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 48</span><span class="match-time">6/24(水) 2:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇨🇴 コロンビア</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇨🇩 DRコンゴ</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇨🇴 コロンビア</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇨🇩 DRコンゴ</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 67</span><span class="match-time">6/27(土) 21:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇵🇦 パナマ</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🏴󠁧󠁢󠁥󠁮󠁧󠁿 イングランド</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇵🇦 パナマ</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🏴󠁧󠁢󠁥󠁮󠁧󠁿 イングランド</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 68</span><span class="match-time">6/27(土) 21:00</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇭🇷 クロアチア</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇬🇭 ガーナ</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇭🇷 クロアチア</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇬🇭 ガーナ</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
                 <div class="match-card">
                     <div class="match-meta-bar"><span class="match-num">Match 72</span><span class="match-time">6/27(土) 23:30</span></div>
                     <div class="match-body">
-                        <div class="team-row"><div class="team-identity">🇨🇩 DRコンゴ</div><div class="score-box">-</div></div>
-                        <div class="team-row"><div class="team-identity">🇺🇿 ウズベキスタン</div><div class="score-box">-</div></div>
+                        <div class="match-teams-space">
+                            <div class="team-row"><div class="team-identity">🇨🇩 DRコンゴ</div><div class="score-box">-</div></div>
+                            <div class="team-row"><div class="team-identity">🇺🇿 ウズベキスタン</div><div class="score-box">-</div></div>
+                        </div>
+                        <div class="match-video-space"></div>
                     </div>
                 </div>
             </div>
 
         </section>
 
-        <!-- 決勝トーナメント -->
         <section class="stage-page" id="page-knockout">
             <div class="stage-header">
                 <h2 class="stage-title">決勝トーナメント</h2>
