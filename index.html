@@ -193,8 +193,8 @@
         .team-row {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            font-size: 0.8rem; /* 文字をわずかに縮小 */
+            justify-content: flex-start; /* ★ 左寄せにします */
+            font-size: 0.8rem;
             font-weight: 700;
             line-height: 1.2;
         }
@@ -203,6 +203,8 @@
             display: flex;
             align-items: center;
             gap: 4px;
+            width: 120px;                /* ★ チーム名エリアの幅を固定して、スコアの位置を揃えます */
+            flex-shrink: 0;              /* ★ 画面が狭くなっても幅を維持します */
         }
         
         .score-box {
@@ -213,8 +215,8 @@
         
         /* ★YouTube動画スペースのベース（グレーの背景を削除） */
         .match-video-space {
-            width: 64px;         
-            height: 36px;        
+            width: 80px;         
+            height: 45px;        
             background-color: transparent; /* 💡薄グレーの背景を透明にします */
             border-radius: 3px;
             display: flex;
