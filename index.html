@@ -136,25 +136,15 @@
                    極限圧縮 試合カード + YouTubeミニエリア
                    ========================================================================== */
                 .match-card {
+                    border: 2px solid var(--border-color);
+                    border-radius: 6px;
+                    overflow: hidden;
                     background: var(--card-bg);
-                    border-radius: 12px;
-                    padding: 16px;
-                    margin-bottom: 16px;
-                    
-                    /* 枠線の太さを2倍（2px）にし、上下左右で異なる色を指定 */
-                    border-style: solid;
-                    border-width: 2px;
-                    border-top-color: #66FEDC;    /* 上 */
-                    border-right-color: #B4E800;  /* 右 */
-                    border-bottom-color: #01C853; /* 下 */
-                    border-left-color: #B28AF6;   /* 左 */
-                    
-                    /* 影を薄い灰色に変更 */
-                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); 
-                    
                     display: flex;
                     flex-direction: column;
-                    gap: 12px;
+                    flex: 1;
+                    max-height: 80px;
+                    margin-bottom: 2px; /* カード間の隙間を詰め、縦を節約 */
                 }
                 .match-card:last-child {
                     margin-bottom: 0;
