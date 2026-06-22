@@ -1508,21 +1508,31 @@
             updateTabActive(index);
         }
 
+        // タブのアクティブ（文字色）切り替え
         function updateTabActive(activeIndex) {
             tabs.forEach((tab, idx) => {
                 if (idx === activeIndex) tab.classList.add('active');
                 else tab.classList.remove('active');
             });
-            if (indicator) {
-                indicator.style.transform = `translateX(${activeIndex * 100}%)`;
-            }
         }
 
+        // スワイプ・スクロール量とインジケーターを完全同期
         slider.addEventListener('scroll', () => {
-                const width = slider.clientWidth;
-                if (width === 0) return;
-                const index = Math.round(slider.scrollLeft / width);
-                updateTabActive(index);
+            const width = slider.clientWidth;
+            if (width === 0) return;
+
+            // 1. 現在の正確なスクロール位置から、何ページ目にいるかを小数点で計算
+            // (例: 1ページ目から2ページ目にスワイプ中なら 0.2 -> 0.5 -> 0.8 とリアルタイムに変遷)
+            const scrollPercent = slider.scrollLeft / width;
+
+            // 2. 指の動きに合わせてインジケーターの位置をリアルタイムに動かす
+            if (indicator) {
+                indicator.style.transform = `translateX(${scrollPercent * 100}%)`;
+            }
+
+            // 3. アクティブなタブ（文字色）の切り替えは、半分（0.5）を超えたタイミングで行う
+            const activeIndex = Math.round(scrollPercent);
+            updateTabActive(activeIndex);
         });
 
         updateTabActive(0);
