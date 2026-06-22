@@ -277,32 +277,51 @@
                 /* ==========================================================================
                    Tab Navigation
                    ========================================================================== */
-                nav.tab-nav {
+                /* --- タブナビゲーションの調整 --- */
+                .tab-nav {
                     position: fixed;
                     bottom: 0;
                     left: 0;
-                    width: 100%;
-                    background-color: var(--primary-navy);
+                    right: 0;
+                    height: 50px;
+                    background: var(--card-bg);
                     display: flex;
+                    align-items: center;
+                    justify-content: space-around;
+                    border-top: 1px solid var(--border-color);
                     padding-bottom: env(safe-area-inset-bottom);
                     z-index: 100;
                 }
                 
                 .tab-item {
                     flex: 1;
-                    padding: 12px 10px; /* タブも少しだけスマートに */
-                    text-align: center;
-                    color: rgba(255, 255, 255, 0.6);
-                    font-size: 0.75rem;
-                    font-weight: 800;
+                    height: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 0.85rem;
+                    font-weight: 700;
+                    color: var(--text-sub);
                     text-decoration: none;
-                    transition: background 0.2s, color 0.2s;
+                    position: relative;
+                    z-index: 2; /* インジケーターより上に配置 */
+                    transition: color 0.3s ease;
                 }
                 
                 .tab-item.active {
-                    color: var(--accent-lime);
-                    background-color: rgba(255, 255, 255, 0.05);
-                    box-shadow: inset 0 -4px 0 var(--accent-lime);
+                    color: var(--accent-emerald); /* アクティブ時はテキストを緑に（下線は消します） */
+                }
+                
+                /* --- 追加：スムーズに動くインジケーターバー --- */
+                .tab-indicator {
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    height: 3px;
+                    background-color: var(--accent-emerald); /* 緑色のバー */
+                    width: 25%; /* 4つタブがあるため 100% / 4 = 25% */
+                    z-index: 1;
+                    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* スムーズな移動アニメーション */
                 }
             </style>
         </head>
@@ -1476,6 +1495,7 @@
                 <a href="#page-round32" class="tab-item" onclick="scrollToPage(1); return false;">Round32</a>
                 <a href="#page-round16" class="tab-item" onclick="scrollToPage(2); return false;">Round16</a>
                 <a href="#page-round8" class="tab-item" onclick="scrollToPage(3); return false;">準々～決勝</a>
+                <div class="tab-indicator" id="tabIndicator"></div>
             </nav>
         
             <script>
@@ -1492,12 +1512,19 @@
                         if (idx === activeIndex) tab.classList.add('active');
                         else tab.classList.remove('active');
                     });
+                    if (indicator) {
+                        indicator.style.transform = `translateX(${activeIndex * 100}%)`;
+                    }
                 }
         
                 slider.addEventListener('scroll', () => {
-                    const index = Math.round(slider.scrollLeft / slider.clientWidth);
-                    updateTabActive(index);
+                        const width = slider.clientWidth;
+                        if (width === 0) return;
+                        const index = Math.round(slider.scrollLeft / width);
+                        updateTabActive(index);
                 });
+
+                updateTabActive(0);
             </script>
         </body>
         </html>
